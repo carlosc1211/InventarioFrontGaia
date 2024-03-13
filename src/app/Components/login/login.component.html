@@ -1,0 +1,46 @@
+<div class="row justify-content-center mt-n3">
+     <div class="col-md-4 mx-auto" style="margin-top: 100px;">
+       <div class="card">
+         <div class="card-header">
+           <div class="text-center">
+             <img
+               src="../../../assets/img/logo.png"
+               alt="Logo"
+               style="max-height: 100px"
+             />
+           </div>
+         </div>
+         <div class="card-body">
+           <form id="loginForm">
+             <div class="mb-3">
+               <label for="username" class="form-label">Usuario</label>
+               <input
+                 type="text"
+                 class="form-control"
+                 [(ngModel)]="formData.Usuario"
+                 [ngModelOptions]="{standalone: true}"
+                 placeholder="Introduzca usuario"
+               />
+             </div>
+             <div class="mb-3">
+               <label for="password" class="form-label">Contraseña</label>
+               <input
+                 type="password"
+                 [(ngModel)]="formData.Contrasenya"
+                 class="form-control"
+                 id="password"
+                 [ngModelOptions]="{standalone: true}"
+                 placeholder="Introduzca Contraseña"
+               />
+             </div>
+             <div class="d-grid gap-2">
+               <button type="button" (click)="submitForm()" class="btn btn-primary">
+                 Login
+               </button>
+             </div>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+   
