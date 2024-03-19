@@ -23,6 +23,6 @@ import { LaunchpadComponent } from './Components/launchpad/launchpad.component';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

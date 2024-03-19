@@ -11,15 +11,21 @@ import { AuthService } from 'src/app/Service/auth.service';
 export class LoginComponent {
   formData = {
     Usuario: '',
-    Contrasenya: ''
+    Contrasenya: '',
   };
 
-  constructor(private authService: AuthService, private router:Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   submitForm() {
-    const usuario = { Usuario: this.formData.Usuario, Contrasenya: this.formData.Contrasenya };
+    const usuario = {
+      Usuario: this.formData.Usuario,
+      Contrasenya: this.formData.Contrasenya,
+    };
 
-    this.authService.login(usuario).subscribe(response => {
+    this.authService.login(usuario).subscribe((response) => {
       console.log(response.token);
       if (response.token!='') {
         this.router.navigate(['/launchpad']);
