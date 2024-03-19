@@ -22,7 +22,7 @@ export class LoginComponent {
     this.authService.login(usuario).subscribe(response => {
       console.log(response.token);
       if (response.token!='') {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/launchpad']);
       }
     });
   }

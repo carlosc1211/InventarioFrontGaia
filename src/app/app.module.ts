@@ -7,12 +7,14 @@ import { LoginComponent } from './Components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './Components/home/home.component';
+import { LaunchpadComponent } from './Components/launchpad/launchpad.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LaunchpadComponent
   ],
   imports: [
     BrowserModule,
