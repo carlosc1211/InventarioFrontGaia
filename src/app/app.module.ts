@@ -8,13 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './Components/home/home.component';
 import { LaunchpadComponent } from './Components/launchpad/launchpad.component';
+import { NavbarComponent } from './Shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    LaunchpadComponent
+    LaunchpadComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

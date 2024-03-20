@@ -8,6 +8,6 @@ body {
   height: 100vh; /* 100% de la altura de la ventana */
 }
 
-.container-fluid {
-  height: 100vh; /* 100% de la altura de la ventana */
+.card {
+  margin-bottom: 20px;
 }
