@@ -1,0 +1,28 @@
+<div class="container">
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Inventario GAIA</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Item
+    </button>
+</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <!-- Otros encabezados si es necesario -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <!-- Otras celdas si es necesario -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-inventario-add-item></app-inventario-add-item>

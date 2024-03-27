@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LaunchpadComponent } from './Components/launchpad/launchpad.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { InventarioComponent } from './Components/inventario/inventario.component';
+import { InventarioListComponent } from './Components/inventario/inventarioList/inventario-list.component';
+import { InventarioAddItemComponent } from './Components/inventario/inventarioItem/inventario-add-item/inventario-add-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { InventarioComponent } from './Components/inventario/inventario.componen
     LoginComponent,
     LaunchpadComponent,
     NavbarComponent,
-    InventarioComponent
+    InventarioComponent,
+    InventarioListComponent,
+    InventarioAddItemComponent
   ],
   imports: [
     BrowserModule,
