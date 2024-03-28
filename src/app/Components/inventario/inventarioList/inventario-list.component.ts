@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InventarioService } from 'src/app/Service/inventario.service';
 
 @Component({
   selector: 'app-inventario-list',
@@ -6,15 +7,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./inventario-list.component.css']
 })
 export class InventarioListComponent {
- data = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-    // Otros datos si es necesario
-  ];
+ articles: any[] = [];
 
-  showModal: boolean = true;
 
-  constructor() {
-    
+  constructor(private articleService: InventarioService) { }
+
+  ngOnInit(): void {
+    this.getArticles();
   }
+
+  getArticles(): void {
+    this.articleService.getAllArticles()
+      .subscribe(articles => this.articles = articles);
+  }
+
+  editItem(item: any) {
+    console.log('Editar artículo:', item);
+  }
+
+  deleteItem(item: any) {
+    const index = this.articles.indexOf(item);
+    if (index !== -1) {
+      this.articles.splice(index, 1);
+      console.log('Artículo eliminado:', item);
+    }
+  }
+
+
 }
