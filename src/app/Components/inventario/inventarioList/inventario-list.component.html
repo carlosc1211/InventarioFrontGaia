@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-secondary" onclick="goBack()">
         Go Back
     </button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+    <button type="button" class="btn btn-primary" (click)="openModal()">
         Add Item
     </button>
 </div>
@@ -83,4 +83,4 @@
 
 </div>
 
-<app-inventario-add-item></app-inventario-add-item>
+<app-inventario-add-item  #exampleModal></app-inventario-add-item>

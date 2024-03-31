@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
+import { InventarioListComponent } from '../../inventarioList/inventario-list.component';
 
 @Component({
   selector: 'app-inventario-add-item',
@@ -22,17 +23,20 @@ export class InventarioAddItemComponent {
       incoterm: '',
       containerNumber: ''
     };
-    
-    
-  
-  
-    constructor(private articleService: InventarioService) {
+
+    @ViewChild('exampleModal') exampleModal: InventarioListComponent;
+
+    constructor(
+      private articleService: InventarioService,
+      private renderer: Renderer2, 
+      private el: ElementRef) {
     }
-      // Función para guardar el nuevo item
-      saveItem() {
+
+    saveItem() : void {
         this.articleService.saveArticle(this.newItem).subscribe(
         (response) => {
           console.log('Artículo guardado con éxito:', response);
+          this.closeModal();
         },
         (error) => {
           console.error('Error al guardar el artículo:', error);
@@ -40,5 +44,13 @@ export class InventarioAddItemComponent {
         }
       );
     }
+
+    closeModal(): void {
+        this.renderer.removeClass(document.body, 'modal-open');
+        this.renderer.setStyle(this.el.nativeElement.ownerDocument.querySelector('.modal'), 'display', 'none');
+    }
+
+
+
 }
   

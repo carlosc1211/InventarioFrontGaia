@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { timeout } from 'rxjs';
 import { InventarioService } from 'src/app/Service/inventario.service';
+import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-item/inventario-add-item.component';
+
+
 
 @Component({
   selector: 'app-inventario-list',
@@ -49,11 +52,12 @@ export class InventarioListComponent {
         this.setPage(this.currentPage + 1);
     }
 
-  showModal: boolean = false;
+  @ViewChild('exampleModal') exampleModal: InventarioAddItemComponent;
 
-
-  constructor(private articleService: InventarioService) { 
-  }
+  constructor(
+    private articleService: InventarioService,
+    private renderer: Renderer2, 
+    private el: ElementRef) { }
 
   ngOnInit(): void {
     this.getArticles();
@@ -64,24 +68,22 @@ export class InventarioListComponent {
     
   }
 
-  openModal() {
-    this.showModal = true;
-  }
-
-
-  closeModal() {
-    this.showModal = false;
-  }
-
-  onArticleSaved() {
-    // Este método será invocado cuando el evento articleSaved sea emitido desde el componente modal
-    // Cierra el modal
-    this.closeModal();
+  openModal(): void {
+    this.renderer.addClass(document.body, 'modal-open');
+    this.renderer.setStyle(this.el.nativeElement.ownerDocument.querySelector('.modal'), 'display', 'block');
   }
 
   getArticles(): void {
     this.articleService.getAllArticles()
-      .subscribe(articles => this.articles = articles);
+      .subscribe({
+        next:articles=>{
+          console.log(articles);
+          this.articles = articles;
+        },
+        error:e=>{
+          console.log(e);
+        }
+      });
   }
 
   editItem(item: any) {

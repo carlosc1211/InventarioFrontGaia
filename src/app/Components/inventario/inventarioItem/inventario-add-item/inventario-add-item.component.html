@@ -1,11 +1,9 @@
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
-    aria-hidden="true">
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" style="max-height: 90vh; overflow-y: auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Add new item</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -13,7 +11,8 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="Model" class="form-label">Model</label>
-                                <input type="text" class="form-control" id="Model" name="Model" [(ngModel)]="newItem.model">
+                                <input type="text" class="form-control" id="Model" name="Model"
+                                    [(ngModel)]="newItem.model">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -26,8 +25,8 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="SourcingTrackingNumber" class="form-label">Tracking Number</label>
-                                <input type="text" class="form-control" id="SourcingTrackingNumber" name="SourcingTrackingNumber"
-                                    [(ngModel)]="newItem.sourcingTrackingNumber">
+                                <input type="text" class="form-control" id="SourcingTrackingNumber"
+                                    name="SourcingTrackingNumber" [(ngModel)]="newItem.sourcingTrackingNumber">
                             </div>
                         </div>
                     </div>
@@ -49,8 +48,8 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="DestinationCountry" class="form-label">Destination Country</label>
-                                <input type="text" class="form-control" id="DestinationCountry" name="DestinationCountry"
-                                    [(ngModel)]="newItem.destinationCountry">
+                                <input type="text" class="form-control" id="DestinationCountry"
+                                    name="DestinationCountry" [(ngModel)]="newItem.destinationCountry">
                             </div>
                         </div>
                     </div>
@@ -65,8 +64,8 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="TimeOfArrival" class="form-label">Time of Arrival</label>
-                                <input type="datetime-local" class="form-control" id="TimeOfArrival" name="TimeOfArrival"
-                                    [(ngModel)]="newItem.timeOfArrival">
+                                <input type="datetime-local" class="form-control" id="TimeOfArrival"
+                                    name="TimeOfArrival" [(ngModel)]="newItem.timeOfArrival">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -96,10 +95,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
                 <button type="button" class="btn btn-primary" (click)="saveItem()">Save</button>
             </div>
         </div>
     </div>
-
 </div>
