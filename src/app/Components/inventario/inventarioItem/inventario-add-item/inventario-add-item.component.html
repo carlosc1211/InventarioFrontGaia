@@ -1,19 +1,105 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl" style="max-height: 90vh; overflow-y: auto;">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Item</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add new item</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="Model" class="form-label">Model</label>
+                                <input type="text" class="form-control" id="Model" name="Model" [(ngModel)]="newItem.model">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="SalesSample" class="form-label">Sales Sample</label>
+                                <input type="text" class="form-control" id="SalesSample" name="SalesSample"
+                                    [(ngModel)]="newItem.salesSample">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="SourcingTrackingNumber" class="form-label">Tracking Number</label>
+                                <input type="text" class="form-control" id="SourcingTrackingNumber" name="SourcingTrackingNumber"
+                                    [(ngModel)]="newItem.sourcingTrackingNumber">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="Warrant" class="form-label">Warrant</label>
+                                <input type="text" class="form-control" id="Warrant" name="Warrant"
+                                    [(ngModel)]="newItem.warrant">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="OriginCountry" class="form-label">Origin Country</label>
+                                <input type="text" class="form-control" id="OriginCountry" name="OriginCountry"
+                                    [(ngModel)]="newItem.originCountry">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="DestinationCountry" class="form-label">Destination Country</label>
+                                <input type="text" class="form-control" id="DestinationCountry" name="DestinationCountry"
+                                    [(ngModel)]="newItem.destinationCountry">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="Warehouse" class="form-label">Warehouse</label>
+                                <input type="text" class="form-control" id="Warehouse" name="Warehouse"
+                                    [(ngModel)]="newItem.warehouse">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="TimeOfArrival" class="form-label">Time of Arrival</label>
+                                <input type="datetime-local" class="form-control" id="TimeOfArrival" name="TimeOfArrival"
+                                    [(ngModel)]="newItem.timeOfArrival">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="CurrentLocation" class="form-label">Current Location</label>
+                                <input type="text" class="form-control" id="CurrentLocation" name="CurrentLocation"
+                                    [(ngModel)]="newItem.currentLocation">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="Incoterm" class="form-label">Incoterm</label>
+                                <input type="text" class="form-control" id="Incoterm" name="Incoterm"
+                                    [(ngModel)]="newItem.incoterm">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="ContainerNumber" class="form-label">Container Number</label>
+                                <input type="text" class="form-control" id="ContainerNumber" name="ContainerNumber"
+                                    [(ngModel)]="newItem.containerNumber">
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveItem()">Save</button>
             </div>
         </div>
     </div>
+
 </div>
