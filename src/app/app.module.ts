@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { CardModule } from 'primeng/card';
+import {StyleClassModule} from 'primeng/styleclass';
+
+
+
+import { ButtonModule } from 'primeng/button';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -21,12 +30,18 @@ import { InventarioAddItemComponent } from './Components/inventario/inventarioIt
     InventarioComponent,
     InventarioListComponent,
     InventarioAddItemComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+    CardModule,
+    StyleClassModule
   ],
   providers: [],
   bootstrap: [AppComponent],

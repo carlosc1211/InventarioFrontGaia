@@ -1,7 +1,28 @@
-/* Agregar Roboto como fuente principal */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Add application styles & imports to this file! */
+/* @import "primeflex/primeflex.css"; */
+@import "../node_modules/primeng/resources/themes/md-light-indigo/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeflex/primeflex.css";
 
-/* Aplicar Roboto al cuerpo del documento */
-body {
-    font-family: 'Helvetica Neue', sans-serif;
+/* :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-family);
 }
+
+h1 {
+    margin-top: 0;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+} */

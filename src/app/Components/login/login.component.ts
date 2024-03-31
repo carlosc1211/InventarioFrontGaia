@@ -24,11 +24,11 @@ export class LoginComponent {
       Usuario: this.formData.Usuario,
       Contrasenya: this.formData.Contrasenya,
     };
+    debugger
 
     this.authService.login(usuario).subscribe((response) => {
       console.log(response.token);
-      debugger
-      if (response.token!='') {
+      if (response.token!='' && response.token!=null && response.token!=undefined) {
         this.router.navigate(['/launchpad']);
       }
     });
