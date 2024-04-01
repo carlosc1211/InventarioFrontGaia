@@ -10,19 +10,19 @@ import { InventarioListComponent } from '../../inventarioList/inventario-list.co
 })
 
 export class InventarioAddItemComponent {
-    newItem: Articulo = {
-      model: '',
-      salesSample: '',
-      sourcingTrackingNumber: '',
-      warrant: '',
-      originCountry: '',
-      destinationCountry: '',
-      warehouse: '',
-      timeOfArrival: new Date(),
-      currentLocation: '',
-      incoterm: '',
-      containerNumber: ''
-    };
+    // newItem: Articulo = {
+    //   model: '',
+    //   salesSample: '',
+    //   sourcingTrackingNumber: '',
+    //   warrant: '',
+    //   originCountry: '',
+    //   destinationCountry: '',
+    //   warehouse: '',
+    //   timeOfArrival: new Date(),
+    //   currentLocation: '',
+    //   incoterm: '',
+    //   containerNumber: ''
+    // };
 
     @ViewChild('exampleModal') exampleModal: InventarioListComponent;
 
@@ -32,18 +32,18 @@ export class InventarioAddItemComponent {
       private el: ElementRef) {
     }
 
-    saveItem() : void {
-        this.articleService.saveArticle(this.newItem).subscribe(
-        (response) => {
-          console.log('Artículo guardado con éxito:', response);
-          this.closeModal();
-        },
-        (error) => {
-          console.error('Error al guardar el artículo:', error);
-          // Aquí puedes manejar el error
-        }
-      );
-    }
+    // saveItem() : void {
+    //     this.articleService.saveArticle(this.newItem).subscribe(
+    //     (response) => {
+    //       console.log('Artículo guardado con éxito:', response);
+    //       this.closeModal();
+    //     },
+    //     (error) => {
+    //       console.error('Error al guardar el artículo:', error);
+    //       // Aquí puedes manejar el error
+    //     }
+    //   );
+    // }
 
     closeModal(): void {
         this.renderer.removeClass(document.body, 'modal-open');

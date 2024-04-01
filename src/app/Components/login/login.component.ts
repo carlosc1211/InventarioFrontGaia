@@ -1,6 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private messageService: MessageService
   ) {}
 
   submitForm() {
@@ -24,13 +26,19 @@ export class LoginComponent {
       Usuario: this.formData.Usuario,
       Contrasenya: this.formData.Contrasenya,
     };
-    debugger
-
     this.authService.login(usuario).subscribe((response) => {
-      console.log(response.token);
       if (response.token!='' && response.token!=null && response.token!=undefined) {
-        this.router.navigate(['/launchpad']);
+        this.messageService.add({ severity: 'success', summary: '', detail: 'Welcome' });
+
+        setTimeout(() => {
+          this.goToLaunchapad();
+        }, 1000);
+        
       }
     });
+  }
+
+  goToLaunchapad(){
+    this.router.navigate(['/launchpad']);
   }
 }

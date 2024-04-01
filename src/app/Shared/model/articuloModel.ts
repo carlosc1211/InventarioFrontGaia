@@ -1,4 +1,5 @@
 export class Articulo {
+  id : string;
   model: string = "";
   salesSample: string = "";
   sourcingTrackingNumber: string = "";

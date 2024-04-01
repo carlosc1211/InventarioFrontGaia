@@ -8,6 +8,8 @@ import {StyleClassModule} from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +22,7 @@ import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { InventarioComponent } from './Components/inventario/inventario.component';
 import { InventarioListComponent } from './Components/inventario/inventarioList/inventario-list.component';
 import { InventarioAddItemComponent } from './Components/inventario/inventarioItem/inventario-add-item/inventario-add-item.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -43,9 +46,11 @@ import { InventarioAddItemComponent } from './Components/inventario/inventarioIt
     CardModule,
     StyleClassModule,
     TableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastModule
+    
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
