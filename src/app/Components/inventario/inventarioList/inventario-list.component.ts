@@ -62,9 +62,9 @@ export class InventarioListComponent {
   ngOnInit(): void {
     this.getArticles();
 
-    setTimeout(() => {
-    this.setPage(1);  
-    }, 100);
+    // setTimeout(() => {
+    // this.setPage(1);  
+    // }, 100);
     
   }
 

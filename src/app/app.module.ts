@@ -5,10 +5,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
 import {StyleClassModule} from 'primeng/styleclass';
-
-
-
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +41,9 @@ import { InventarioAddItemComponent } from './Components/inventario/inventarioIt
     PasswordModule,
     ButtonModule,
     CardModule,
-    StyleClassModule
+    StyleClassModule,
+    TableModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
