@@ -4,6 +4,7 @@ import { InventarioService } from 'src/app/Service/inventario.service';
 import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-item/inventario-add-item.component';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 
 
@@ -22,7 +23,8 @@ export class InventarioListComponent {
   constructor(
     private articleService: InventarioService,
     private renderer: Renderer2, 
-    private el: ElementRef) { }
+    private el: ElementRef,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getArticles(); 
@@ -65,6 +67,10 @@ export class InventarioListComponent {
   onRowEditCancel(product: Articulo, index: number) {
       this.articles[index] = this.clonedProducts[product.id as string];
       //delete this.clonedProducts[product.id as string];
+  }
+
+  backToInventory(){
+    this.router.navigate(['launchpad']);  
   }
 
 }

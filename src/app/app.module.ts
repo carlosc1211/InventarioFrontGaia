@@ -9,6 +9,8 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
+import { Toolbar, ToolbarModule } from 'primeng/toolbar';
 
 
 
@@ -47,8 +49,9 @@ import { MessageService } from 'primeng/api';
     StyleClassModule,
     TableModule,
     BrowserAnimationsModule,
-    ToastModule
-    
+    ToastModule,
+    TooltipModule,
+    ToolbarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
