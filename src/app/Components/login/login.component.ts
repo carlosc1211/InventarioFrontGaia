@@ -1,25 +1,36 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/Service/auth.service';
+import { SpinnerService } from 'src/app/Service/spinner.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   formData = {
     Usuario: '',
     Contrasenya: '',
   };
 
+    showSpinner: boolean = false;
+
+
   constructor(
     private authService: AuthService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private spinnerService: SpinnerService
   ) {}
+
+  ngOnInit() {
+    this.spinnerService.spinnerSubject.subscribe((show: boolean) => {
+      this.showSpinner = show;
+    });
+  }
 
   submitForm() {
     const usuario = {
@@ -32,7 +43,7 @@ export class LoginComponent {
 
         setTimeout(() => {
           this.goToLaunchapad();
-        }, 1000);
+        }, 5000);
         
       }
     });

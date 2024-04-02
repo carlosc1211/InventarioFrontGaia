@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { Toolbar, ToolbarModule } from 'primeng/toolbar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 
 
 
@@ -18,13 +20,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LaunchpadComponent } from './Components/launchpad/launchpad.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { InventarioComponent } from './Components/inventario/inventario.component';
 import { InventarioListComponent } from './Components/inventario/inventarioList/inventario-list.component';
 import { InventarioAddItemComponent } from './Components/inventario/inventarioItem/inventario-add-item/inventario-add-item.component';
 import { MessageService } from 'primeng/api';
+import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
 
 @NgModule({
   declarations: [
@@ -51,9 +54,16 @@ import { MessageService } from 'primeng/api';
     BrowserAnimationsModule,
     ToastModule,
     TooltipModule,
-    ToolbarModule
+    ToolbarModule,
+    ProgressSpinnerModule
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
