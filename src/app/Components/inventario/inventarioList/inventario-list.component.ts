@@ -5,7 +5,7 @@ import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-ite
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 
 
@@ -26,7 +26,9 @@ export class InventarioListComponent {
     private articleService: InventarioService,
     private dialogService: DialogService,
     private router: Router) { }
-
+  
+    ref: DynamicDialogRef | undefined;
+    
   ngOnInit(): void {
     this.getArticles(); 
 
@@ -35,7 +37,7 @@ export class InventarioListComponent {
 
   openDialog() {
     const ref = this.dialogService.open(InventarioAddItemComponent, {
-      header: 'Título del diálogo',
+      header: 'Add new item',
       width: '70%'
     });
   }
@@ -74,10 +76,6 @@ export class InventarioListComponent {
 
   backToInventory(){
     this.router.navigate(['launchpad']);  
-  }
-
-  showDialog() {
-      this.visible = true;
   }
 
 }

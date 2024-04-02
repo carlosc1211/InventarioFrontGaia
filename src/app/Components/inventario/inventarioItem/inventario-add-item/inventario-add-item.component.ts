@@ -10,19 +10,20 @@ import { InventarioListComponent } from '../../inventarioList/inventario-list.co
 })
 
 export class InventarioAddItemComponent {
-    // newItem: Articulo = {
-    //   model: '',
-    //   salesSample: '',
-    //   sourcingTrackingNumber: '',
-    //   warrant: '',
-    //   originCountry: '',
-    //   destinationCountry: '',
-    //   warehouse: '',
-    //   timeOfArrival: new Date(),
-    //   currentLocation: '',
-    //   incoterm: '',
-    //   containerNumber: ''
-    // };
+    newItem: Articulo = {
+      id : '',
+      model: '',
+      salesSample: '',
+      sourcingTrackingNumber: '',
+      warrant: '',
+      originCountry: '',
+      destinationCountry: '',
+      warehouse: '',
+      timeOfArrival: new Date(),
+      currentLocation: '',
+      incoterm: '',
+      containerNumber: ''
+    };
     visible: boolean = false;
 
     constructor(

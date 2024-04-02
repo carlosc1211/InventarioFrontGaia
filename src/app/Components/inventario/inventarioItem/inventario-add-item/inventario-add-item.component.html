@@ -1,117 +1,145 @@
-<!-- <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" style="max-height: 90vh; overflow-y: auto;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add new item</h1>
-                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="Model" class="form-label">Model</label>
-                                <input type="text" class="form-control" id="Model" name="Model"
-                                    [(ngModel)]="newItem.model">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="SalesSample" class="form-label">Sales Sample</label>
-                                <input type="text" class="form-control" id="SalesSample" name="SalesSample"
-                                    [(ngModel)]="newItem.salesSample">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="SourcingTrackingNumber" class="form-label">Tracking Number</label>
-                                <input type="text" class="form-control" id="SourcingTrackingNumber"
-                                    name="SourcingTrackingNumber" [(ngModel)]="newItem.sourcingTrackingNumber">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="Warrant" class="form-label">Warrant</label>
-                                <input type="text" class="form-control" id="Warrant" name="Warrant"
-                                    [(ngModel)]="newItem.warrant">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="OriginCountry" class="form-label">Origin Country</label>
-                                <input type="text" class="form-control" id="OriginCountry" name="OriginCountry"
-                                    [(ngModel)]="newItem.originCountry">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="DestinationCountry" class="form-label">Destination Country</label>
-                                <input type="text" class="form-control" id="DestinationCountry"
-                                    name="DestinationCountry" [(ngModel)]="newItem.destinationCountry">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="Warehouse" class="form-label">Warehouse</label>
-                                <input type="text" class="form-control" id="Warehouse" name="Warehouse"
-                                    [(ngModel)]="newItem.warehouse">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="TimeOfArrival" class="form-label">Time of Arrival</label>
-                                <input type="datetime-local" class="form-control" id="TimeOfArrival"
-                                    name="TimeOfArrival" [(ngModel)]="newItem.timeOfArrival">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="CurrentLocation" class="form-label">Current Location</label>
-                                <input type="text" class="form-control" id="CurrentLocation" name="CurrentLocation"
-                                    [(ngModel)]="newItem.currentLocation">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="Incoterm" class="form-label">Incoterm</label>
-                                <input type="text" class="form-control" id="Incoterm" name="Incoterm"
-                                    [(ngModel)]="newItem.incoterm">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="ContainerNumber" class="form-label">Container Number</label>
-                                <input type="text" class="form-control" id="ContainerNumber" name="ContainerNumber"
-                                    [(ngModel)]="newItem.containerNumber">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-                <button type="button" class="btn btn-primary" (click)="saveItem()">Save</button>
-            </div>
+<!-- <div class="p-grid">
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Model">Model</label>
+            <input pInputText id="Model" name="Model" [(ngModel)]="newItem.model" />
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="SalesSample">Sales Sample</label>
+            <input type="text" id="SalesSample" name="SalesSample" pInputText [(ngModel)]="newItem.salesSample">
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="SourcingTrackingNumber">Tracking Number</label>
+            <input type="text" id="SourcingTrackingNumber" name="SourcingTrackingNumber" pInputText
+                [(ngModel)]="newItem.sourcingTrackingNumber">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Warrant">Warrant</label>
+            <input type="text" id="Warrant" name="Warrant" pInputText [(ngModel)]="newItem.warrant">
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="OriginCountry">Origin Country</label>
+            <input type="text" id="OriginCountry" name="OriginCountry" pInputText [(ngModel)]="newItem.originCountry">
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="DestinationCountry">Destination Country</label>
+            <input type="text" id="DestinationCountry" name="DestinationCountry" pInputText
+                [(ngModel)]="newItem.destinationCountry">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Warehouse">Warehouse</label>
+            <input type="text" id="Warehouse" name="Warehouse" pInputText [(ngModel)]="newItem.warehouse">
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="TimeOfArrival">Time of Arrival</label>
+            <input type="text" id="TimeOfArrival" name="TimeOfArrival" pInputText [(ngModel)]="newItem.timeOfArrival">
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="CurrentLocation">Current Location</label>
+            <input type="text" id="CurrentLocation" name="CurrentLocation" pInputText
+                [(ngModel)]="newItem.currentLocation">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Incoterm">Incoterm</label>
+            <input type="text" id="Incoterm" name="Incoterm" pInputText [(ngModel)]="newItem.incoterm">
+        </div>
+        <div class="flex flex-column gap-2 p-1">
+            <label for="ContainerNumber">Container Number</label>
+            <input type="text" id="ContainerNumber" name="ContainerNumber" pInputText
+                [(ngModel)]="newItem.containerNumber">
         </div>
     </div>
 </div> -->
 
-<div class="card flex justify-content-center">
-    <p-dialog header="Header" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
-        [draggable]="false" [resizable]="false">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-            est laborum.
-        </p>
-    </p-dialog>
+
+<div class="p-grid">
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Model">Model</label>
+            <input pInputText id="Model" name="Model" [(ngModel)]="newItem.model" />
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="SalesSample">Sales Sample</label>
+            <input type="text" id="SalesSample" name="SalesSample" pInputText [(ngModel)]="newItem.salesSample">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="SourcingTrackingNumber">Tracking Number</label>
+            <input type="text" id="SourcingTrackingNumber" name="SourcingTrackingNumber" pInputText
+                [(ngModel)]="newItem.sourcingTrackingNumber">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Warrant">Warrant</label>
+            <input type="text" id="Warrant" name="Warrant" pInputText [(ngModel)]="newItem.warrant">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="OriginCountry">Origin Country</label>
+            <input type="text" id="OriginCountry" name="OriginCountry" pInputText [(ngModel)]="newItem.originCountry">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="DestinationCountry">Destination Country</label>
+            <input type="text" id="DestinationCountry" name="DestinationCountry" pInputText
+                [(ngModel)]="newItem.destinationCountry">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Warehouse">Warehouse</label>
+            <input type="text" id="Warehouse" name="Warehouse" pInputText [(ngModel)]="newItem.warehouse">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="TimeOfArrival">Time of Arrival</label>
+            <input type="text" id="TimeOfArrival" name="TimeOfArrival" pInputText [(ngModel)]="newItem.timeOfArrival">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="CurrentLocation">Current Location</label>
+            <input type="text" id="CurrentLocation" name="CurrentLocation" pInputText
+                [(ngModel)]="newItem.currentLocation">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Incoterm">Incoterm</label>
+            <input type="text" id="Incoterm" name="Incoterm" pInputText [(ngModel)]="newItem.incoterm">
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="ContainerNumber">Container Number</label>
+            <input type="text" id="ContainerNumber" name="ContainerNumber" pInputText
+                [(ngModel)]="newItem.containerNumber">
+        </div>
+    </div>
 </div>
