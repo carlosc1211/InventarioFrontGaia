@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SpinnerService } from 'src/app/Service/spinner.service';
 
 @Component({
   selector: 'app-inventario',
@@ -6,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent {
-
 }

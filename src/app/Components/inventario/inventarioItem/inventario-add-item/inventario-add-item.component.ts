@@ -23,13 +23,16 @@ export class InventarioAddItemComponent {
     //   incoterm: '',
     //   containerNumber: ''
     // };
-
-    @ViewChild('exampleModal') exampleModal: InventarioListComponent;
+    visible: boolean = false;
 
     constructor(
       private articleService: InventarioService,
       private renderer: Renderer2, 
       private el: ElementRef) {
+    }
+
+    showDialog() {
+        this.visible = true;
     }
 
     // saveItem() : void {
@@ -44,12 +47,6 @@ export class InventarioAddItemComponent {
     //     }
     //   );
     // }
-
-    closeModal(): void {
-        this.renderer.removeClass(document.body, 'modal-open');
-        this.renderer.setStyle(this.el.nativeElement.ownerDocument.querySelector('.modal'), 'display', 'none');
-    }
-
 
 
 }

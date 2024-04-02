@@ -1,5 +1,6 @@
 <p-toast></p-toast>
-<div class="spinner-container">
+<div *ngIf="showSpinner" class="overlay"></div>
+<div *ngIf="showSpinner" class="spinner-container">
   <p-progressSpinner strokeWidth="4" styleClass="custom-spinner"></p-progressSpinner>
 </div>
 <div class="flex md:justify-content-center justify-content-center flex-wrap">

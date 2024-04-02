@@ -22,9 +22,30 @@ body,html {
 
 .spinner-container {
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     /* Asegura que el spinner esté encima de otros elementos */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo gris claro semitransparente */
+    z-index: 9998;
+    /* Colócalo detrás del spinner */
+}
+
+.spinner-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    /* Asegura que el spinner esté encima del fondo gris claro */
 }

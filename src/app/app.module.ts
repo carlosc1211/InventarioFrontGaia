@@ -10,8 +10,10 @@ import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
-import { Toolbar, ToolbarModule } from 'primeng/toolbar';
+import { ToolbarModule } from 'primeng/toolbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DialogModule } from 'primeng/dialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 
@@ -55,10 +57,13 @@ import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
     ToastModule,
     TooltipModule,
     ToolbarModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DialogModule,
+    DynamicDialogModule
   ],
   providers: [
-    MessageService, 
+    MessageService,
+    DialogService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,

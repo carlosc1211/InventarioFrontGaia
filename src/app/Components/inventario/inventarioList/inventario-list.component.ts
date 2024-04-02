@@ -5,6 +5,7 @@ import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-ite
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 
@@ -19,11 +20,11 @@ export class InventarioListComponent {
     clonedProducts: { [s: string]: Articulo } = {};
     @ViewChild('exampleModal') exampleModal: InventarioAddItemComponent;
     sizes!: any[];
+    visible: boolean = false;
 
   constructor(
     private articleService: InventarioService,
-    private renderer: Renderer2, 
-    private el: ElementRef,
+    private dialogService: DialogService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -32,9 +33,11 @@ export class InventarioListComponent {
     this.sizes = [{ name: 'Small', class: 'p-datatable-sm' }];
   }
 
-  openModal(): void {
-    this.renderer.addClass(document.body, 'modal-open');
-    this.renderer.setStyle(this.el.nativeElement.ownerDocument.querySelector('.modal'), 'display', 'block');
+  openDialog() {
+    const ref = this.dialogService.open(InventarioAddItemComponent, {
+      header: 'Título del diálogo',
+      width: '70%'
+    });
   }
 
   getArticles(): void {
@@ -71,6 +74,10 @@ export class InventarioListComponent {
 
   backToInventory(){
     this.router.navigate(['launchpad']);  
+  }
+
+  showDialog() {
+      this.visible = true;
   }
 
 }
