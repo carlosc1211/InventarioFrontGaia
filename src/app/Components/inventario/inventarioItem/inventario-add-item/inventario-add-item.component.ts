@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChil
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { InventarioListComponent } from '../../inventarioList/inventario-list.component';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-inventario-add-item',
@@ -28,26 +29,30 @@ export class InventarioAddItemComponent {
 
     constructor(
       private articleService: InventarioService,
-      private renderer: Renderer2, 
-      private el: ElementRef) {
+      private dialogRef: DynamicDialogRef) {
     }
 
     showDialog() {
         this.visible = true;
     }
 
-    // saveItem() : void {
-    //     this.articleService.saveArticle(this.newItem).subscribe(
-    //     (response) => {
-    //       console.log('Artículo guardado con éxito:', response);
-    //       this.closeModal();
-    //     },
-    //     (error) => {
-    //       console.error('Error al guardar el artículo:', error);
-    //       // Aquí puedes manejar el error
-    //     }
-    //   );
-    // }
+    closeDialog() {
+    this.dialogRef.close();
+  }
+
+    saveItem() : void {
+        this.articleService.saveArticle(this.newItem).subscribe(
+        (response) => {
+          console.log('Artículo guardado con éxito:', response);
+          this.closeDialog();
+        },
+        (error) => {
+          console.error('Error al guardar el artículo:', error);
+          // Aquí puedes manejar el error
+        }
+      );
+    }
+
 
 
 }

@@ -14,8 +14,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-
-
+import { CalendarModule } from 'primeng/calendar';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,7 +58,9 @@ import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
     ToolbarModule,
     ProgressSpinnerModule,
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    CalendarModule
+
   ],
   providers: [
     MessageService,

@@ -15,19 +15,20 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./inventario-list.component.css']
 })
 export class InventarioListComponent {
-    articles: any[] = [];
-    statuses!: SelectItem[];
-    clonedProducts: { [s: string]: Articulo } = {};
-    @ViewChild('exampleModal') exampleModal: InventarioAddItemComponent;
-    sizes!: any[];
-    visible: boolean = false;
+  articles: any[] = [];
+  statuses!: SelectItem[];
+  clonedProducts: { [s: string]: Articulo } = {};
+  @ViewChild('exampleModal') exampleModal: InventarioAddItemComponent;
+  sizes!: any[];
+  visible: boolean = false;
 
+  ref: DynamicDialogRef | undefined;
+  
   constructor(
     private articleService: InventarioService,
     private dialogService: DialogService,
     private router: Router) { }
   
-    ref: DynamicDialogRef | undefined;
     
   ngOnInit(): void {
     this.getArticles(); 
@@ -36,9 +37,9 @@ export class InventarioListComponent {
   }
 
   openDialog() {
-    const ref = this.dialogService.open(InventarioAddItemComponent, {
+    this.ref = this.dialogService.open(InventarioAddItemComponent, {
       header: 'Add new item',
-      width: '70%'
+      width: '65%',height:'65%'
     });
   }
 

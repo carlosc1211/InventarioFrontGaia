@@ -24,7 +24,6 @@ export class InventarioService {
 
 
 saveArticle(articulo: any): Observable<any> {
-  debugger
   return this.http.post<any>(this.saveArticleUrl, articulo)
       .pipe(
         catchError(this.handleError) // Manejo de errores opcional
