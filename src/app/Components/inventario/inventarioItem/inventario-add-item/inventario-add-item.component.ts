@@ -2,7 +2,8 @@ import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChil
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { InventarioListComponent } from '../../inventarioList/inventario-list.component';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
 
 @Component({
   selector: 'app-inventario-add-item',
@@ -29,7 +30,8 @@ export class InventarioAddItemComponent {
 
     constructor(
       private articleService: InventarioService,
-      private dialogRef: DynamicDialogRef) {
+      private dialogRef: DynamicDialogRef,
+      private dialogService: DialogCommunicationService) {
     }
 
     showDialog() {
@@ -38,6 +40,7 @@ export class InventarioAddItemComponent {
 
     closeDialog() {
     this.dialogRef.close();
+    this.dialogService.notifyDialogClosed();
   }
 
     saveItem() : void {

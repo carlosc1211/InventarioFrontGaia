@@ -1,11 +1,12 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { timeout } from 'rxjs';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Subscription, timeout } from 'rxjs';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-item/inventario-add-item.component';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
 
 
 
@@ -14,7 +15,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
   templateUrl: './inventario-list.component.html',
   styleUrls: ['./inventario-list.component.css']
 })
-export class InventarioListComponent {
+export class InventarioListComponent implements OnInit, OnDestroy {
   articles: any[] = [];
   statuses!: SelectItem[];
   clonedProducts: { [s: string]: Articulo } = {};
@@ -23,17 +24,30 @@ export class InventarioListComponent {
   visible: boolean = false;
 
   ref: DynamicDialogRef | undefined;
+  private dialogClosedSubscription: Subscription;
   
   constructor(
     private articleService: InventarioService,
     private dialogService: DialogService,
-    private router: Router) { }
+    private router: Router,
+    private dialogServiceClose: DialogCommunicationService) { }
   
     
   ngOnInit(): void {
     this.getArticles(); 
-
     this.sizes = [{ name: 'Small', class: 'p-datatable-sm' }];
+
+    this.dialogClosedSubscription = this.dialogServiceClose.dialogClosed$.subscribe(() => {
+      this.refreshGridData();
+    });
+  }
+
+  ngOnDestroy() {
+    this.dialogClosedSubscription.unsubscribe();
+  }
+
+   refreshGridData() {
+    this.getArticles()
   }
 
   openDialog() {
@@ -47,8 +61,15 @@ export class InventarioListComponent {
     this.articleService.getAllArticles()
       .subscribe({
         next:articles=>{
-          console.log(articles);
-          this.articles = articles;
+          this.articles = articles.sort((a, b) => {
+          if (a.containerNumber < b.containerNumber) {
+            return -1;
+          }
+          if (a.containerNumber > b.containerNumber) {
+            return 1;
+          }
+          return 0;
+        });
         },
         error:e=>{
           console.log(e);
