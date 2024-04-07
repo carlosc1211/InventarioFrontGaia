@@ -15,7 +15,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CalendarModule } from 'primeng/calendar';
-
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +28,7 @@ import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { InventarioComponent } from './Components/inventario/inventario.component';
 import { InventarioListComponent } from './Components/inventario/inventarioList/inventario-list.component';
 import { InventarioAddItemComponent } from './Components/inventario/inventarioItem/inventario-add-item/inventario-add-item.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
 
 @NgModule({
@@ -59,12 +60,14 @@ import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
     ProgressSpinnerModule,
     DialogModule,
     DynamicDialogModule,
-    CalendarModule
-
+    CalendarModule,
+    InputNumberModule,
+    ConfirmDialogModule
   ],
   providers: [
     MessageService,
     DialogService,
+    ConfirmationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,

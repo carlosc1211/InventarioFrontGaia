@@ -1,7 +1,9 @@
-
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
 
 <div class="surface-card p-4 shadow-8 border-round">
     <p-table 
+        id="htmlData"
         [value]="articles" 
         [tableStyle]="{ 'min-width': '50rem' }"
         [paginator]="true"
@@ -9,7 +11,6 @@
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [rowsPerPageOptions]="[5, 10, 20]"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
         #dt2
         dataKey="id" 
         editMode="row" 
@@ -39,8 +40,16 @@
             <th>Current Location</th>
             <th>Incoterm</th>
             <th>Container Number</th>
+            <th>SKU</th>
+            <th>Description</th>
+            <th>QtyGross</th>
+            <th>QtyNet</th>
+            <th>Available</th>
+            <th>Reserved</th>
+            <th>Potential Buyer</th>
             <th>Actions</th>
         </tr>
+
         <!-- <tr>
             <th>
                 <p-columnFilter type="text" field="model"></p-columnFilter>
@@ -192,6 +201,78 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
+            
+            
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input" >
+                        <input pInputText type="text" [(ngModel)]="articles.sku">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.sku}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="articles.Description">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.Description}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="articles.QtyGross">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.QtyGross}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="articles.QtyNet">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.QtyNet}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="articles.Available">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.Available}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="articles.Reserved">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.Reserved}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="articles.PotentialBuyer">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{articles.PotentialBuyer}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
             <td>
                 <div class="flex align-items-center justify-content-center gap-2">
                     <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
@@ -199,7 +280,7 @@
                     <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
                         (click)="onRowEditSave(articles)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
                     <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
-                        (click)="onRowEditCancel(articles, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                        (click)="onRowEditCancel(articles, ri, $event)" class="p-button-rounded p-button-text p-button-danger"></button>
                 </div>
             </td>
         </tr>

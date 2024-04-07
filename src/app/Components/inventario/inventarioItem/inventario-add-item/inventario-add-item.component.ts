@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
-import { InventarioListComponent } from '../../inventarioList/inventario-list.component';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-inventario-add-item',
@@ -24,14 +24,23 @@ export class InventarioAddItemComponent {
       timeOfArrival: new Date(),
       currentLocation: '',
       incoterm: '',
-      containerNumber: ''
+      containerNumber: '',
+      sku:'',
+      description:'',
+      available:0,
+      qtyGross:0,
+      qtyNet:0,
+      reserved:0,
+      potentialBuyer:'',
+      activo:true
     };
     visible: boolean = false;
 
     constructor(
       private articleService: InventarioService,
       private dialogRef: DynamicDialogRef,
-      private dialogService: DialogCommunicationService) {
+      private dialogService: DialogCommunicationService,
+      private messageService: MessageService) {
     }
 
     showDialog() {
@@ -46,12 +55,13 @@ export class InventarioAddItemComponent {
     saveItem() : void {
         this.articleService.saveArticle(this.newItem).subscribe(
         (response) => {
-          console.log('Artículo guardado con éxito:', response);
+          // console.log('Artículo guardado con éxito:', response);
+          this.messageService.add({ severity: 'success', summary: '', detail: 'Artículo guardado con éxito' });
           this.closeDialog();
         },
         (error) => {
           console.error('Error al guardar el artículo:', error);
-          // Aquí puedes manejar el error
+          this.messageService.add({ severity: 'error', summary: '', detail: 'Error al guardar el artículo' });
         }
       );
     }

@@ -3,12 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Articulo } from '../Shared/model/articuloModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InventarioService {
   private getaAllArticleUrl = 'https://localhost:44357/api/Articulo/GetAllItem';
+  private putArticleUrl = 'https://localhost:44357/api/Articulo/PutArticle/';
+  private getDetailArticleUrl = 'https://localhost:44357/api/Articulo/GetDetailItem'
+  private deteleArticleUrl = 'https://localhost:44357/api/Articulo/deleteItem';
   private saveArticleUrl = 'https://localhost:44357/api/Articulo/';
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -22,6 +26,18 @@ export class InventarioService {
   );
 }
 
+getDetailArticles(): Observable<any[]> {
+  return this.http.get<any[]>(this.getDetailArticleUrl).pipe(
+    catchError((error) => {
+      console.error('Error al obtener el detalle de los artículos:', error);
+      return throwError('Algo salió mal al obtener los artículos. Por favor, inténtelo de nuevo más tarde.');
+    })
+  );
+}
+
+actualizarProducto(producto: Articulo): Observable<Articulo> {
+    return this.http.put<Articulo>(this.putArticleUrl, producto).pipe(catchError(this.handleError));
+}
 
 saveArticle(articulo: any): Observable<any> {
   return this.http.post<any>(this.saveArticleUrl, articulo)

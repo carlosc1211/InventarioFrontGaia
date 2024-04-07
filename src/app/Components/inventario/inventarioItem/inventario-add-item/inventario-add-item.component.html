@@ -1,3 +1,7 @@
+<p-toast></p-toast>
+<h3>Logistic</h3>
+<hr style="width: 100%; margin: 10px 0; border: 1px solid #ccc;">
+
 <div class="flex flex-wrap" style="max-width: 900px">
     <div class="flex align-items-center justify-content-center m-2 border-round"
         style="min-width: 200px;  ">
@@ -44,7 +48,7 @@
         </div>
     </div>
 
-    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+    <!-- <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
         <div class="flex flex-column gap-2">
             <label for="Warehouse">Warehouse</label>
             <input type="text" id="Warehouse" name="Warehouse" pInputText [(ngModel)]="newItem.warehouse">
@@ -77,9 +81,63 @@
             <label for="ContainerNumber">Container Number</label>
             <input type="text" id="ContainerNumber" name="ContainerNumber" pInputText [(ngModel)]="newItem.containerNumber">
         </div>
+    </div>-->
+</div>
+
+<h3>Product</h3>
+<hr style="width: 100%; margin: 10px 0; border: 1px solid #ccc;">
+
+<div class="flex flex-wrap" style="max-width: 900px">
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="SKU">SKU</label>
+            <input type="text" id="SKU" name="SKU" pInputText [(ngModel)]="newItem.sku">
+        </div>
+    </div>
+    
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Description">Description</label>
+            <input type="text" id="Description" name="Description" pInputText [(ngModel)]="newItem.description">
+        </div>
+    </div>
+    
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="QtyGross">QtyGross</label>
+            <p-inputNumber id="QtyGross" name="QtyGross" inputId="integeronly" [(ngModel)]="newItem.qtyGross"> </p-inputNumber>
+        </div>
+    </div>
+    
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Qtynet">Qty net</label>
+            <p-inputNumber id="Qtynet" name="Qtynet" inputId="integeronly" [(ngModel)]="newItem.qtyNet"> </p-inputNumber>
+        </div>
+    </div>
+
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Available">Available</label>
+            <p-inputNumber id="Available" name="Available" inputId="integeronly" [(ngModel)]="newItem.available"> </p-inputNumber>
+        </div>
+    </div>
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="Reserved">Reserved</label>
+            <p-inputNumber id="Reserved" name="Reserved" inputId="integeronly" [(ngModel)]="newItem.reserved"> </p-inputNumber>
+        </div>
+    </div>
+    <div class="flex align-items-center justify-content-center m-2 border-round" style="min-width: 200px;  ">
+        <div class="flex flex-column gap-2 p-1">
+            <label for="PotentialBuyer">Potential Buyer</label>
+            <input type="text" id="PotentialBuyer" name="PotentialBuyer" pInputText [(ngModel)]="newItem.potentialBuyer">
+        </div>
     </div>
 </div>
-<div class="footer flex justify-content-end" style="margin-top: 28%">
+
+
+<div class="footer flex justify-content-end" >
     <button pButton type="button" class="btn btn-primary m-2"  (click)="saveItem()">Guardar</button>
     <button pButton type="button" class="btn btn-secondary m-2" (click)="closeDialog()">Cancelar</button>
 </div>
