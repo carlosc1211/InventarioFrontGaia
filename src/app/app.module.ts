@@ -30,6 +30,9 @@ import { InventarioListComponent } from './Components/inventario/inventarioList/
 import { InventarioAddItemComponent } from './Components/inventario/inventarioItem/inventario-add-item/inventario-add-item.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
+import { SellingComponent } from './Components/selling/selling.component';
+import { UsersComponent } from './Components/users/users.component';
+import { ReservedComponent } from './Components/reserved/reserved.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
     NavbarComponent,
     InventarioComponent,
     InventarioListComponent,
-    InventarioAddItemComponent
+    InventarioAddItemComponent,
+    SellingComponent,
+    UsersComponent,
+    ReservedComponent
     
   ],
   imports: [
