@@ -20,7 +20,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { TreeTableModule } from 'primeng/treetable';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -73,7 +72,7 @@ import { ReservedComponent } from './Components/reserved/reserved.component';
     InputNumberModule,
     ConfirmDialogModule,
     DropdownModule,
-    TreeTableModule
+    TreeTableModule,
   ],
   providers: [
     MessageService,
