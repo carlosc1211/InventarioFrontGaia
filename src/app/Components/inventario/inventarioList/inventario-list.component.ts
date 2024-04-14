@@ -3,7 +3,7 @@ import { Subscription, timeout } from 'rxjs';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-item/inventario-add-item.component';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
-import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
+import { ConfirmationService, MessageService, SelectItem, TreeNode } from 'primeng/api';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';

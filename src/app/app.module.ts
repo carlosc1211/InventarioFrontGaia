@@ -17,6 +17,9 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { TreeTableModule } from 'primeng/treetable';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,7 +71,9 @@ import { ReservedComponent } from './Components/reserved/reserved.component';
     DynamicDialogModule,
     CalendarModule,
     InputNumberModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DropdownModule,
+    TreeTableModule
   ],
   providers: [
     MessageService,

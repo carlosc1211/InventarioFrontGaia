@@ -1,1 +1,96 @@
-<p>users works!</p>
+<app-navbar></app-navbar>
+<p-toast></p-toast>
+<div class="surface-card p-4 shadow-8 border-round">
+    <div class="border-2 border-dashed surface-border">
+        <div class="px-4 py-5 md:px-6 lg:px-8">
+            <p-table   [tableStyle]="{ 'min-width': '50rem', 'height': '300px' }" [value]="usuarios" editMode="row" >
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <button pButton type="button" icon="pi pi-arrow-left" label="Back" class="mr-2" pTooltip="Back to Inventory"
+                            (click)="backToInventory()" tooltipPosition="bottom"></button>
+                        <button type="button" pButton pRipple icon="pi pi-plus" label="New item" class="p-button-info ml-auto"
+                            pTooltip="Add user" tooltipPosition="bottom"></button>
+                
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Usuario</th>
+                        <th>Contraseya</th>
+                        <th>Rol</th>
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-usuarios let-editing="editing" let-ri="rowIndex">
+                    <tr [pEditableRow]="usuarios">
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="usuarios.nombre">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ usuarios.nombre }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="usuarios.apellidos">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ usuarios.apellidos }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="usuarios.nombre_Usuario">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ usuarios.nombre_Usuario }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="usuarios.contrasenya">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ usuarios.contrasenya }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <p-dropdown [(ngModel)]="usuarios.rol" [options]="roles" optionLabel="codigo"
+                                        placeholder="Select a Role"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ usuarios.rol }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>
+                            <div class="flex align-items-center justify-content-center gap-2">
+                                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                                    (click)="onRowEditInit(usuarios)" class="p-button-rounded p-button-text"></button>
+                                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                                    (click)="onRowEditSave(usuarios)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                                    (click)="onRowEditCancel(usuarios, ri, $event)"
+                                    class="p-button-rounded p-button-text p-button-danger"></button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
