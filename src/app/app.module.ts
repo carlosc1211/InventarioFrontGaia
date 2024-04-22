@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -19,6 +21,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { TreeTableModule } from 'primeng/treetable';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,12 +52,12 @@ import { ReservedComponent } from './Components/reserved/reserved.component';
     SellingComponent,
     UsersComponent,
     ReservedComponent
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     InputTextModule,
     PasswordModule,
@@ -73,6 +77,8 @@ import { ReservedComponent } from './Components/reserved/reserved.component';
     ConfirmDialogModule,
     DropdownModule,
     TreeTableModule,
+    MultiSelectModule,
+    CheckboxModule
   ],
   providers: [
     MessageService,

@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
         setTimeout(() => {
           this.goToLaunchapad();
-        }, 5000);  
+        }, 3000);  
       }else{
         this.messageService.add({ severity: 'error', summary: '', detail: 'Error login' });
       }
