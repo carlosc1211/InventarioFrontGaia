@@ -19,9 +19,7 @@ export class ReservedComponent implements OnInit {
   selectedProducts: Articulo[] = [];
   selectedArticle: Articulo;
   valorReservado: number = 0;
-  form: FormGroup = new FormGroup({
-    reserved: new FormControl('reserved'),
-  });
+  
 
   constructor(
     private articleService: InventarioService, 
@@ -32,11 +30,6 @@ export class ReservedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArticles();
-
-    this.form = this.fb.group({
-      reserved: [''] 
-    });
-
   }
 
   onRowSelect(event: any) {

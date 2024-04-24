@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <br>
-<form [formGroup]="form">
+
     <div class="surface-card p-8 shadow-8 border-round">
 
         <div class="grid">
@@ -16,9 +16,9 @@
                         [rowsPerPageOptions]="[5, 10, 20]">
                         <ng-template pTemplate="header">
                             <tr>
-                                <!-- <th style="width: 4rem">
+                                <th style="width: 4rem">
                                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                                </th> -->
+                                </th>
                                 <th>Model</th>
                                 <th>Qty Gross</th>
                                 <th>Qty Net</th>
@@ -27,11 +27,17 @@
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-article>
-                            <tr [pSelectableRow]="article">
+                            <tr>
+                                <td>
+                                    <p-tableCheckbox [value]="article"></p-tableCheckbox>
+                                </td>
                                 <td>{{article.model}}</td>
                                 <td>{{article.qtyGross}}</td>
                                 <td>{{article.qtyNet}}</td>
                                 <td>{{article.available}}</td>
+                                <td>
+                                    <p-inputNumber inputId="integeronly" [(ngModel)]="article.reserved"> </p-inputNumber>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -42,33 +48,3 @@
             </div>
         </div>
     </div>
-
-</form>
-
-<!-- <div class="card">
-    <p-toast></p-toast>
-    <p-table [value]="articles" selectionMode="single" [(selection)]="selectedArticle" dataKey="model"
-        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
-        [tableStyle]="{'min-width': '50rem'}">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 4rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th>Model</th>
-                <th>Qty Gross</th>
-                <th>Qty Net</th>
-                <th>Available</th>
-                <th style="color: blue;">Reservar</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-article>
-            <tr [pSelectableRow]="article">
-                <td>{{article.model}}</td>
-                <td>{{article.qtyGross}}</td>
-                <td>{{article.qtyNet}}</td>
-                <td>{{article.available}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div> -->
