@@ -17,9 +17,9 @@ import { Articulo } from 'src/app/Shared/model/articuloModel';
 export class ReservedComponent implements OnInit {
   articles: Articulo[];
   selectedProducts: Articulo[] = [];
-  selectedArticle: Articulo;
+  selectedArticle: any;
   valorReservado: number = 0;
-  
+  // isDisabled:boolean=true
 
   constructor(
     private articleService: InventarioService, 
@@ -32,23 +32,22 @@ export class ReservedComponent implements OnInit {
     this.getArticles();
   }
 
+   
   onRowSelect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.name });
+    this.selectedProducts.push(event.data);
+    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.model });
+    console.log(this.selectedProducts);
   }
 
   onRowUnselect(event: any) {
-    this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.name });
-  }
-
-  isValid():boolean{
-    return true;
-  }
-
-  onSelectionChange(article: any) {
-    console.log(article.data);
-    this.selectedArticle = article.data;
+    const index = this.selectedProducts.findIndex((item: Articulo) => item.model === event.data.model);
+    if (index !== -1) {
+        this.selectedProducts.splice(index, 1);
+    }
+    this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.model });
+    console.log(this.selectedProducts)
   }  
-  
+
   getArticles(): void {
     this.articleService.getAllArticles()
       .subscribe({
