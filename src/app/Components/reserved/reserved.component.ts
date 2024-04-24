@@ -11,30 +11,40 @@ import { Articulo } from 'src/app/Shared/model/articuloModel';
 @Component({
   selector: 'app-tu-reserved',
   templateUrl: './reserved.component.html',
-  styleUrls: ['./reserved.component.css']
+  styleUrls: ['./reserved.component.css'],
+  providers: [MessageService]
 })
 export class ReservedComponent implements OnInit {
   articles: Articulo[];
   selectedProducts: Articulo[] = [];
   selectedArticle: Articulo;
-  selectedArticleId:string;
   valorReservado: number = 0;
   form: FormGroup = new FormGroup({
     reserved: new FormControl('reserved'),
   });
 
   constructor(
-    private articleService: InventarioService,
+    private articleService: InventarioService, 
     private messageService: MessageService,
-  ) { }
-
-  subscription?: Subscription;
+    private fb: FormBuilder
+  ) { 
+  }
 
   ngOnInit(): void {
     this.getArticles();
-    this.form = new FormGroup({
-    reserved: new FormControl({value: '0', disabled: this.isValid()}, Validators.required)});
 
+    this.form = this.fb.group({
+      reserved: [''] 
+    });
+
+  }
+
+  onRowSelect(event: any) {
+    this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.name });
+  }
+
+  onRowUnselect(event: any) {
+    this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.name });
   }
 
   isValid():boolean{
@@ -44,15 +54,7 @@ export class ReservedComponent implements OnInit {
   onSelectionChange(article: any) {
     console.log(article.data);
     this.selectedArticle = article.data;
-
-    // Si hay un artículo seleccionado, activa su campo reservado
-    if (this.selectedArticle) {
-        const selectedArticle = this.articles.find(articulo => articulo.id === this.selectedArticle.id);
-        if (selectedArticle) {
-            selectedArticle.reserved = 6;
-        }
-    }
-}
+  }  
   
   getArticles(): void {
     this.articleService.getAllArticles()
