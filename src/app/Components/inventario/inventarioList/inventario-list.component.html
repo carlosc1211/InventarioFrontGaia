@@ -49,15 +49,15 @@
         <!-- Reservas por articulo -->
         <ng-template pTemplate="rowexpansion" let-expanded="expanded" let-article>
             <!-- Utiliza *ngIf para verificar si hay datos -->
-            <tr *ngIf="article.articuloDetalles && article.articuloDetalles.length > 0">
+            <tr *ngIf="article.articuloReservas && article.articuloReservas.length > 0">
                 <td></td>
                 <td colspan="18">
                     <table class="expanded-table">
                         <tr>
-                            <th>Potential Buyer:</th>
+                            <th>SKU:</th>
                         </tr>
                         <tr>
-                            <td>{{article.articuloDetalles[0].potentialBuyer}}</td>
+                            <td>{{article.articuloReservas[0].sku}}</td>
                         </tr>
                     </table>
                 </td>
