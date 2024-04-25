@@ -3,7 +3,7 @@
 
 <div class="surface-card p-8 shadow-8 border-round">
     <div class="grid">
-        <div class="col-12 md:col-12 lg:col-6">
+        <div class="col-12 md:col-12 lg:col-12">
             <h3>Seleccione</h3>
             <div class="card">
                 <p-toast></p-toast>
@@ -13,7 +13,7 @@
                     [rowsPerPageOptions]="[5, 10, 20]" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th style="width: 4rem">
+                            <th style="width: 8rem">
                                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                             </th>
                             <th>Model</th>
@@ -33,7 +33,14 @@
                             <td>{{article.qtyNet}}</td>
                             <td>{{article.available}}</td>
                             <td>
-                                <p-inputNumber inputId="integeronly" [(ngModel)]="article.reserved"> </p-inputNumber>
+                                <p-inputNumber inputId="integeronly" [(ngModel)]="article.reserved" (ngModelChange)="onReservedChange(article)"> </p-inputNumber>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <tr>
+                            <td colspan="6" style="text-align: right;">
+                                <button type="button" pButton pRipple class="mr-2" (click)="onSave()">Reservar</button>
                             </td>
                         </tr>
                     </ng-template>

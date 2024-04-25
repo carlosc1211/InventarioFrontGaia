@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
+import { ArticuloReserva } from 'src/app/Shared/model/articuloReserva';
 
 @Component({
   selector: 'app-tu-reserved',
@@ -19,7 +20,7 @@ export class ReservedComponent implements OnInit {
   selectedProducts: Articulo[] = [];
   selectedArticle: any;
   valorReservado: number = 0;
-  // isDisabled:boolean=true
+  isDisabled:boolean=true
 
   constructor(
     private articleService: InventarioService, 
@@ -32,7 +33,23 @@ export class ReservedComponent implements OnInit {
     this.getArticles();
   }
 
-   
+  onReservedChange(article: Articulo): void {
+    // Busca el artículo correspondiente en selectedProducts y actualiza su propiedad reserved
+    const selectedArticle = this.selectedProducts.find(item => item.model === article.model);
+    
+    if (selectedArticle) {
+      selectedArticle.reserved = article.reserved;
+      
+      if (selectedArticle.reserved <= selectedArticle.qtyNet) {
+          selectedArticle.available = selectedArticle.qtyNet - selectedArticle.reserved;
+      } else {
+          selectedArticle.available = 0; // o cualquier otro valor que desees
+      }
+    } else if (article.reserved < article.available) {
+        article.available = article.qtyNet - article.reserved;  
+    }
+}
+
   onRowSelect(event: any) {
     this.selectedProducts.push(event.data);
     this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event.data.model });
@@ -44,8 +61,8 @@ export class ReservedComponent implements OnInit {
     if (index !== -1) {
         this.selectedProducts.splice(index, 1);
     }
-    this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.model });
-    console.log(this.selectedProducts)
+    event.data.reserved = 0;
+    // this.messageService.add({ severity: 'info', summary: 'Product Unselected', detail: event.data.model });
   }  
 
   getArticles(): void {
@@ -63,11 +80,22 @@ export class ReservedComponent implements OnInit {
   }
 
   onSave(): void {
-    if (this.selectedProducts.length > 0) { // Verifica si hay elementos seleccionados
-      console.log(this.selectedProducts);
-      // Aquí puedes enviar los elementos seleccionados a tu servicio para guardarlos en la base de datos
+    if (this.selectedProducts.length > 0) { 
+      this.selectedProducts.forEach(element => {
+        var nuevaReserva = new ArticuloReserva();
+        nuevaReserva.id = element.id;
+        nuevaReserva.available = element.available;
+        nuevaReserva.articulo = element.id;
+        nuevaReserva.reserved = element.reserved;
+        nuevaReserva.sku = element.sku;
+
+        this.articleService.saveArticleReserved(nuevaReserva).subscribe((response => {
+          console.log(response);
+        }))  
+      });
     } else {
-      console.log('No hay elementos seleccionados para guardar.');
+      this.messageService.add({ severity: 'error', summary: '', detail: 'No hay elementos seleccionados para guardar.'});
     }
   }
+
 }

@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Articulo } from '../Shared/model/articuloModel';
+import { ArticuloReserva } from '../Shared/model/articuloReserva';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class InventarioService {
   private getDetailArticleUrl = 'https://localhost:44357/api/Articulo/GetDetailItem'
   private deteleArticleUrl = 'https://localhost:44357/api/Articulo/deleteItem';
   private saveArticleUrl = 'https://localhost:44357/api/Articulo/';
+  private saveArticleReservedUrl = 'https://localhost:44357/api/Articulo/ArticuloReserva/';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -41,6 +43,13 @@ actualizarProducto(producto: Articulo): Observable<Articulo> {
 
 saveArticle(articulo: any): Observable<any> {
   return this.http.post<any>(this.saveArticleUrl, articulo)
+      .pipe(
+        catchError(this.handleError) // Manejo de errores opcional
+      );
+}
+
+saveArticleReserved(articuloReserved: ArticuloReserva): Observable<any> {
+  return this.http.post<any>(this.saveArticleReservedUrl, articuloReserved)
       .pipe(
         catchError(this.handleError) // Manejo de errores opcional
       );
