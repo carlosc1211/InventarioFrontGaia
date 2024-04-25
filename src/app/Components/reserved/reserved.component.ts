@@ -20,12 +20,14 @@ export class ReservedComponent implements OnInit {
   selectedProducts: Articulo[] = [];
   selectedArticle: any;
   valorReservado: number = 0;
-  isDisabled:boolean=true
+  isDisabled: boolean = true
+  isHidden: boolean = false
 
   constructor(
     private articleService: InventarioService, 
     private messageService: MessageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
   ) { 
   }
 
@@ -36,18 +38,7 @@ export class ReservedComponent implements OnInit {
   onReservedChange(article: Articulo): void {
     // Busca el artículo correspondiente en selectedProducts y actualiza su propiedad reserved
     const selectedArticle = this.selectedProducts.find(item => item.model === article.model);
-    
-    if (selectedArticle) {
-      selectedArticle.reserved = article.reserved;
-      
-      if (selectedArticle.reserved <= selectedArticle.qtyNet) {
-          selectedArticle.available = selectedArticle.qtyNet - selectedArticle.reserved;
-      } else {
-          selectedArticle.available = 0; // o cualquier otro valor que desees
-      }
-    } else if (article.reserved < article.available) {
-        article.available = article.qtyNet - article.reserved;  
-    }
+    article.available = article.qtyNet - article.reserved;  
 }
 
   onRowSelect(event: any) {
@@ -90,12 +81,24 @@ export class ReservedComponent implements OnInit {
         nuevaReserva.sku = element.sku;
 
         this.articleService.saveArticleReserved(nuevaReserva).subscribe((response => {
-          console.log(response);
+          console.log(this.selectedProducts)
+          if (element.available == 0)
+            this.isHidden = true
+          this.messageService.add({
+            severity: 'info', summary: '', detail: 'Reserva realizada correctamente'
+          });
+          this.messageService.add({
+            severity: 'Warn', summary: '', detail: `'No hay disponibilidad del product' ${element.model}`
+          });
         }))  
       });
     } else {
       this.messageService.add({ severity: 'error', summary: '', detail: 'No hay elementos seleccionados para guardar.'});
     }
+  }
+
+  backToInventory(){
+    this.router.navigate(['launchpad']);  
   }
 
 }
