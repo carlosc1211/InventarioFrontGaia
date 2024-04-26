@@ -22,6 +22,7 @@ export class ReservedComponent implements OnInit {
   valorReservado: number = 0;
   isDisabled: boolean = true
   isHidden: boolean = false
+  possibleBuyer: string;
 
   constructor(
     private articleService: InventarioService, 
@@ -79,14 +80,15 @@ export class ReservedComponent implements OnInit {
         nuevaReserva.articulo = element.id;
         nuevaReserva.reserved = element.reserved;
         nuevaReserva.sku = element.sku;
+        nuevaReserva.possibleBuyer = this.possibleBuyer;
 
         this.articleService.saveArticleReserved(nuevaReserva).subscribe((response => {
           console.log(this.selectedProducts)
-          if (element.available == 0)
-            this.isHidden = true
           this.messageService.add({
             severity: 'info', summary: '', detail: 'Reserva realizada correctamente'
           });
+          if (element.available == 0)
+            this.isHidden = true
           this.messageService.add({
             severity: 'Warn', summary: '', detail: `'No hay disponibilidad del product' ${element.model}`
           });

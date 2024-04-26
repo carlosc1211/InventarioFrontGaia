@@ -59,6 +59,7 @@
                                     <th>Modelo</th>
                                     <th>SKU</th>
                                     <th>Reservado</th>
+                                    <th>Possible Buyer</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-articuloReservas>
@@ -66,6 +67,7 @@
                                     <td>{{ article.model }}</td>
                                     <td>{{ articuloReservas.sku }}</td>
                                     <td>{{ articuloReservas.reserved }}</td>
+                                    <td>{{ articuloReservas.possibleBuyer }}</td>
                                 </tr>
                             </ng-template>
                         </p-table>

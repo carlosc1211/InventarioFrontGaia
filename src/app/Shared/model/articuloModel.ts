@@ -19,5 +19,5 @@ export class Articulo {
   reserved: number;
   potentialBuyer: string;
   // createDate: Date;
-  activo:boolean;
+  activo: boolean;
 }

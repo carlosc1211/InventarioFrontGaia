@@ -23,6 +23,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TreeTableModule } from 'primeng/treetable';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -78,7 +79,8 @@ import { ReservedComponent } from './Components/reserved/reserved.component';
     DropdownModule,
     TreeTableModule,
     MultiSelectModule,
-    CheckboxModule
+    CheckboxModule,
+    RadioButtonModule
   ],
   providers: [
     MessageService,

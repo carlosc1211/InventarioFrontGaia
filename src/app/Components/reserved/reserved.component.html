@@ -18,14 +18,15 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width: 8rem">
+                    <th style="width: 10%;"> <!-- Ancho fijo para la primera columna -->
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th>Model</th>
-                    <th>Qty Gross</th>
-                    <th>Qty Net</th>
-                    <th>Available</th>
-                    <th style="color: blue;">Reservar</th>
+                    <th style="width: 15%;">Model</th> <!-- Ancho fijo para las demás columnas -->
+                    <th style="width: 15%;">Qty Gross</th>
+                    <th style="width: 15%;">Qty Net</th>
+                    <th style="width: 15%;">Available</th>
+                    <th style="width: 15%;">Possible Buyer</th>
+                    <th style="width: 15%;">Reservar</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-article>
@@ -38,6 +39,9 @@
                     <td>{{article.qtyNet}}</td>
                     <td>{{article.available}}</td>
                     <td>
+                        <input type="text" pInputText [(ngModel)]="possibleBuyer" />
+                    </td>
+                    <td>
                         <p-inputNumber [disabled]="article.available == 0" inputId="integeronly"
                             [(ngModel)]="article.reserved" (ngModelChange)="onReservedChange(article)">
                         </p-inputNumber>
@@ -46,7 +50,7 @@
             </ng-template>
             <ng-template pTemplate="footer">
                 <tr>
-                    <td colspan="6" style="text-align: right;">
+                    <td colspan="7" style="text-align: right;">
                         <button type="button" pButton pRipple class="mr-2" (click)="onSave()">Reservar</button>
                     </td>
                 </tr>
