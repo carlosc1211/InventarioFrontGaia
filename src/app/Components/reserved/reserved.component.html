@@ -38,7 +38,6 @@
                     <td>{{article.qtyNet}}</td>
                     <td>{{article.available}}</td>
                     <td>
-                        <!-- [ngClass]="{'ng-invalid ng-dirty': article.available == 0}" -->
                         <p-inputNumber [disabled]="article.available == 0" inputId="integeronly"
                             [(ngModel)]="article.reserved" (ngModelChange)="onReservedChange(article)">
                         </p-inputNumber>

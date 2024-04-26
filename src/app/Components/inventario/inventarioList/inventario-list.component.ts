@@ -131,7 +131,7 @@ export class InventarioListComponent implements OnInit, OnDestroy {
             message: 'Do you want to delete this record?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
-            acceptButtonStyleClass:"p-button-danger p-button-text",
+            acceptButtonStyleClass:"p-button-danger p-b              utton-text",
             rejectButtonStyleClass:"p-button-text p-button-text",
             acceptIcon:"none",
             rejectIcon:"none",
