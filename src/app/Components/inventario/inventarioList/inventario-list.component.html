@@ -55,26 +55,26 @@
                     <div class="p-3">
                         <p-table [value]="article.articuloReservas" dataKey="id">
                             <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Modelo</th>
-                                    <th>SKU</th>
-                                    <th>Reservado</th>
-                                    <th>Possible Buyer</th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-articuloReservas>
-                                <tr>
-                                    <td>{{ article.model }}</td>
-                                    <td>{{ articuloReservas.sku }}</td>
-                                    <td>{{ articuloReservas.reserved }}</td>
-                                    <td>{{ articuloReservas.possibleBuyer }}</td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </div>
-                </td>
+            <tr>
+                <th>Modelo</th>
+                <th>SKU</th>
+                <th>Reservado</th>
+                <th>Possible Buyer</th>
             </tr>
         </ng-template>
+        <ng-template pTemplate="body" let-articuloReservas>
+            <tr>
+                <td>{{ article.model }}</td>
+                <td>{{ articuloReservas.sku }}</td>
+                <td>{{ articuloReservas.reserved }}</td>
+                <td>{{ articuloReservas.possibleBuyer }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+</td>
+</tr>
+</ng-template>
 
 
 
@@ -159,7 +159,8 @@
         <td>
             <p-cellEditor>
                 <ng-template pTemplate="input">
-                    <p-calendar [(ngModel)]="articles.timeOfArrival" [touchUI]="true" [readonlyInput]="true"></p-calendar>
+                    <p-calendar [(ngModel)]="articles.timeOfArrival" [touchUI]="true"
+                        [readonlyInput]="true"></p-calendar>
                 </ng-template>
                 <ng-template pTemplate="output">
                     {{articles.timeOfArrival | date: 'yyyy-MM-dd'}}

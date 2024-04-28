@@ -40,6 +40,7 @@ import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
 import { SellingComponent } from './Components/selling/selling.component';
 import { UsersComponent } from './Components/users/users.component';
 import { ReservedComponent } from './Components/reserved/reserved.component';
+import { AddUsersComponent } from './Components/users/add-users/add-users/add-users.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ReservedComponent } from './Components/reserved/reserved.component';
     InventarioAddItemComponent,
     SellingComponent,
     UsersComponent,
-    ReservedComponent
+    ReservedComponent,
+    AddUsersComponent
   ],
   imports: [
     BrowserModule,

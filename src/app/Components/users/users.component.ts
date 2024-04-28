@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/Service/auth.service';
 import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
 import { Usuario } from 'src/app/Shared/model/usuarioModel';
+import { AddUsersComponent } from './add-users/add-users/add-users.component';
 
 @Component({
   selector: 'app-users',
@@ -18,11 +20,14 @@ export class UsersComponent implements OnInit {
   clonedProducts: { [s: string]: Usuario } = {};
   selectedRol: any;
   
+  ref: DynamicDialogRef | undefined;
+  private dialogClosedSubscription: Subscription;
 
   constructor(
     private router: Router, 
     private usuariosService:AuthService,
     private messageService: MessageService,
+    private dialogService: DialogService,
     private confirmationService: ConfirmationService,
   ) {}
 
@@ -42,6 +47,13 @@ export class UsersComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: '', detail: 'Algo salió mal al obtener los usuarios. Por favor, inténtelo de nuevo más tarde.' });
         }
       });
+  }
+
+  openDialog() {
+    this.ref = this.dialogService.open(AddUsersComponent, {
+      header: 'Add new item',
+      width: '65%'
+    });
   }
 
   
