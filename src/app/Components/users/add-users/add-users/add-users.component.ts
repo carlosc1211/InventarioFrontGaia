@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/Service/auth.service';
 import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
 
 @Component({
@@ -15,13 +17,16 @@ export class AddUsersComponent {
   constructor(
       private formBuilder: FormBuilder,
       private dialogRef: DynamicDialogRef,
-      private dialogService: DialogCommunicationService) {
+      private dialogService: DialogCommunicationService,
+      private usuarioService: AuthService,
+      private messageService: MessageService) {
     
     this.usuarioForm = this.formBuilder.group({
       nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      telefono: ['', Validators.required],
+      apellido: [''],
+      usuario: ['', [Validators.required]],
+      constrasenya: ['', Validators.required],
+      rol: ['', Validators.required],
     });
     
   }
@@ -40,17 +45,13 @@ export class AddUsersComponent {
     this.dialogService.notifyDialogClosed();
   }
 
-    saveItem() : void {
-        // this.articleService.saveArticle(this.newItem).subscribe(
-        // (response) => {
-        //   // console.log('Artículo guardado con éxito:', response);
-        //   this.messageService.add({ severity: 'success', summary: '', detail: 'Artículo guardado con éxito' });
-        //   this.closeDialog();
-        // },
-        // (error) => {
-        //   console.error('Error al guardar el artículo:', error);
-        //   this.messageService.add({ severity: 'error', summary: '', detail: 'Error al guardar el artículo' });
-        // }
-      //);
+  saveItem(): void {
+    this.usuarioService.saveUsuario(this.usuarioForm).subscribe((response) => {
+      console.log(response)
+      this.closeDialog();
+    }, (error) => {
+      console.error('Error al guardar el usuario:', error);
+      this.messageService.add({ severity: 'error', summary: '', detail: 'Error al guardar el usuario' });
+        })
     }
 }

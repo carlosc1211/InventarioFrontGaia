@@ -13,6 +13,7 @@ export class AuthService {
   private usuariosUrl = 'https://localhost:44357/api/Usuario/GetAllUsers';
   private rolesUrl = 'https://localhost:44357/api/Usuario/GetAllRoles';
   private putUsuarioUrl = 'https://localhost:44357/api/Usuario/PutUsuarios';
+  private postUsuarioUrl = 'https://localhost:44357/api/Usuario/';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -26,6 +27,13 @@ export class AuthService {
       catchError(this.handleError<any>('login', [])),
     );
   }
+
+  saveUsuario(usuario: any): Observable<any> {
+  return this.http.post<any>(this.postUsuarioUrl, usuario)
+      .pipe(
+        catchError(this.handleError<any>('login', [])) 
+      );
+}
 
   actualizarUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(this.putUsuarioUrl, usuario).pipe(catchError(this.handleError<any>('/login', [])))

@@ -103,6 +103,6 @@
 
 
 <div class="footer flex justify-content-end" >
-    <button pButton type="button" class="btn btn-primary m-2"  (click)="saveItem()">Guardar</button>
-    <button pButton type="button" class="btn btn-secondary m-2" (click)="closeDialog()">Cancelar</button>
+    <p-button class="m-2" label="Save" [outlined]="true" (click)="saveItem()"></p-button>
+    <p-button class="m-2" label="Cancel" [outlined]="true" (click)="closeDialog()" severity="secondary"></p-button>
 </div>

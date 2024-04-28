@@ -1,24 +1,26 @@
-<div class="card flex flex-column md:flex-row gap-5">
-    <div class="p-inputgroup">
-        <input pInputText placeholder="Nombre" />
-    </div>
+<form [formGroup]="usuarioForm">
+    <div class="card flex flex-column md:flex-row gap-5">
+        <div class="p-inputgroup">
+            <input pInputText placeholder="Nombre" />
+        </div>
 
-    <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Apellidos" />
-    </div>
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Apellidos" />
+        </div>
 
-    <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Usuario" />
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Usuario" />
+        </div>
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Constraseña" />
+        </div>
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Rol" />
+        </div>
     </div>
-    <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Constraseña" />
-    </div>
-    <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Rol" />
-    </div>
-</div>
+</form>
 <br>
 <div class="footer flex justify-content-end">
-    <button pButton type="button" class="btn btn-primary m-2" (click)="saveItem()">Guardar</button>
-    <button pButton type="button" class="btn btn-secondary m-2" (click)="closeDialog()">Cancelar</button>
+    <p-button class="m-2" label="Save" [outlined]="true" (click)="saveItem()"></p-button>
+    <p-button class="m-2" label="Cancel" [outlined]="true" (click)="closeDialog()" severity="secondary"></p-button>
 </div>
