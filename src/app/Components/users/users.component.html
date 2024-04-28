@@ -3,7 +3,7 @@
 <div class="surface-card p-4 shadow-8 border-round">
     <div class="border-2 border-dashed surface-border">
         <div class="px-4 py-5 md:px-6 lg:px-8">
-            <p-table [tableStyle]="{ 'min-width': '50rem', 'height': '300px' }" [value]="usuarios" editMode="row">
+            <p-table [tableStyle]="{ 'min-width': '50rem' }" [value]="usuarios" editMode="row">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <button pButton type="button" icon="pi pi-arrow-left" label="Back" class="mr-2"
@@ -68,21 +68,21 @@
                         <td>
                             <div class="flex flex-wrap gap-3">
                                 <div class="flex align-items-center">
-                                    <p-radioButton name="pizza" value="Cheese" [(ngModel)]="roles"
-                                        inputId="ingredient1"></p-radioButton>
-                                    <label for="ingredient1" class="ml-2">Cheese</label>
+                                    <p-radioButton name="ADMIN" value="ADMIN" [(ngModel)]="usuarios.rol"
+                                        inputId="admin"></p-radioButton>
+                                    <label for="admin" class="ml-2">Admin</label>
                                 </div>
 
                                 <div class="flex align-items-center">
-                                    <p-radioButton name="pizza" value="Mushroom" [(ngModel)]="roles"
-                                        inputId="ingredient2"></p-radioButton>
-                                    <label for="ingredient2" class="ml-2">Mushroom</label>
+                                    <p-radioButton name="USER" value="USER" [(ngModel)]="usuarios.rol"
+                                        inputId="user"></p-radioButton>
+                                    <label for="user" class="ml-2">User</label>
                                 </div>
 
                                 <div class="flex align-items-center">
-                                    <p-radioButton name="pizza" value="Pepper" [(ngModel)]="roles"
-                                        inputId="ingredient3"></p-radioButton>
-                                    <label for="ingredient3" class="ml-2">Pepper</label>
+                                    <p-radioButton name="GUEST" value="GUEST" [(ngModel)]="usuarios.rol"
+                                        inputId="guest"></p-radioButton>
+                                    <label for="guest" class="ml-2">Guest</label>
                                 </div>
                             </div>
                         </td>

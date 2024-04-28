@@ -18,30 +18,23 @@ export class UsersComponent implements OnInit {
   clonedProducts: { [s: string]: Usuario } = {};
   selectedRol: any;
   
-  private dialogClosedSubscription: Subscription;
 
   constructor(
     private router: Router, 
     private usuariosService:AuthService,
     private messageService: MessageService,
-    private dialogServiceClose: DialogCommunicationService,
     private confirmationService: ConfirmationService,
   ) {}
 
   ngOnInit(): void {
     this.getAllUsers();
-    this.getRoles();
-
-    this.dialogClosedSubscription = this.dialogServiceClose.dialogClosed$.subscribe(() => {
-      this.refreshGridData();
-    });
+    this.refreshGridData();
   }
 
   getAllUsers(){
     this.usuariosService.obtenerUsuarios()
       .subscribe({
         next:user=>{
-          console.log(user)
           this.usuarios = user;
         },
         error:e=>{
@@ -51,26 +44,14 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  getRoles(){
-    this.usuariosService.obtenerRoles()
-      .subscribe({
-        next:roles=>{
-          this.roles = roles;
-        },
-        error:e=>{
-          console.log(e);
-          this.messageService.add({ severity: 'error', summary: '', detail: 'Algo salió mal al obtener los roles. Por favor, inténtelo de nuevo más tarde.' });
-        }
-      });
-  }
-
+  
   onRowEditInit(usuario: Usuario) {
       this.selectedRol = usuario.rol;
       this.clonedProducts[usuario.nombre as string] = { ...usuario };
   }
 
   onRowEditSave(usuario: Usuario) {
-    this.selectedRol = usuario.rol.codigo;
+    console.log(usuario)
     this.usuariosService.actualizarUsuario(usuario).subscribe(
       response => {
         console.log('Usuario actualizado:', response);
@@ -80,7 +61,7 @@ export class UsersComponent implements OnInit {
   }
   
   refreshGridData() {
-      this.getAllUsers()
+    this.getAllUsers()
   }
 
   onRowEditCancel(usuario: Usuario, index: number, event: Event) {
