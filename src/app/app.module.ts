@@ -35,13 +35,13 @@ import { LaunchpadComponent } from './Components/launchpad/launchpad.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { InventarioComponent } from './Components/inventario/inventario.component';
 import { InventarioListComponent } from './Components/inventario/inventarioList/inventario-list.component';
-import { InventarioAddItemComponent } from './Components/inventario/inventarioItem/inventario-add-item/inventario-add-item.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { SpinnerInterceptor } from './Service/SpinnerInterceptor';
 import { SellingComponent } from './Components/selling/selling.component';
 import { UsersComponent } from './Components/users/users.component';
 import { ReservedComponent } from './Components/reserved/reserved.component';
 import { AddUsersComponent } from './Components/users/add-users/add-users/add-users.component';
+import { InventarioAddItemComponent } from './Components/inventario/inventario-add-item/inventario-add-item.component';
 
 @NgModule({
   declarations: [

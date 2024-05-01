@@ -38,13 +38,13 @@ export class InventarioAddItemComponent {
 
     constructor(
       private articleService: InventarioService,
-      private dialogRef: DynamicDialogRef,
+      private dialogRef:     DynamicDialogRef,
       private dialogService: DialogCommunicationService,
       private messageService: MessageService) {
     }
 
     showDialog() {
-        this.visible = true;
+      this.visible = true;
     }
 
     closeDialog() {
