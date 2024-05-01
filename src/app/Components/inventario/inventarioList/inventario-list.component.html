@@ -1,311 +1,468 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 <div class="surface-card p-4 shadow-8 border-round">
-    <p-table id="htmlData" [value]="articles" [tableStyle]="{ 'min-width': '100%' }" [paginator]="true" [rows]="5"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[5, 10, 20]" #dt2 dataKey="id" editMode="row" [exportHeader]="'customExportHeader'">
-        <ng-template pTemplate="caption">
-            <h2>Inventory</h2>
-            <br>
-            <div class="flex align-items-center justify-content-between">
-                <button pButton type="button" icon="pi pi-arrow-left" label="Back" class="mr-2"
-                    pTooltip="Back to Inventory" (click)="backToInventory()" tooltipPosition="bottom"></button>
-                <button type="button" pButton pRipple icon="pi pi-file" class="mr-2" pTooltip="CSV"
-                    tooltipPosition="bottom"></button>
-                <button type="button" pButton pRipple icon="pi pi-file-pdf" class="p-button-warning mr-2" pTooltip="PDF"
-                    tooltipPosition="bottom"></button>
-                <button type="button" pButton pRipple icon="pi pi-plus" label="New item" class="p-button-info ml-auto"
-                    pTooltip="Add product" tooltipPosition="bottom" (click)="openDialog()"></button>
+  <p-table
+    id="htmlData"
+    [value]="articles"
+    [tableStyle]="{ 'min-width': '100%' }"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    #dt2
+    dataKey="id"
+    editMode="row"
+    [exportHeader]="'customExportHeader'"
+  >
+    <ng-template pTemplate="caption">
+      <h2>Inventory</h2>
+      <br />
+      <div class="flex align-items-center justify-content-between">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-arrow-left"
+          label="Back"
+          class="mr-2"
+          pTooltip="Back to Inventory"
+          (click)="backToInventory()"
+          tooltipPosition="bottom"
+        ></button>
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-file"
+          class="mr-2"
+          pTooltip="CSV"
+          tooltipPosition="bottom"
+        ></button>
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-file-pdf"
+          class="p-button-warning mr-2"
+          pTooltip="PDF"
+          tooltipPosition="bottom"
+        ></button>
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-plus"
+          label="New item"
+          class="p-button-info ml-auto"
+          pTooltip="Add product"
+          tooltipPosition="bottom"
+          (click)="openDialog()"
+        ></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th [hidden]="true">ID</th>
+        <th>Model</th>
+        <th>Sales Sample</th>
+        <th>Tracking Number</th>
+        <th>Warrant</th>
+        <th>Origin Country</th>
+        <th>Destination Country</th>
+        <th>Warehouse</th>
+        <th>Time of Arrival</th>
+        <th>Current Location</th>
+        <th>Incoterm</th>
+        <th>Container Number</th>
+        <th>SKU</th>
+        <th>Description</th>
+        <th>QtyGross</th>
+        <th>QtyNet</th>
+        <th>Available</th>
+        <th>Reserved</th>
+        <th>Potential Buyer</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
 
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th></th>
-                <th [hidden]="true">ID</th>
-                <th>Model</th>
-                <th>Sales Sample</th>
-                <th>Tracking Number</th>
-                <th>Warrant</th>
-                <th>Origin Country</th>
-                <th>Destination Country</th>
-                <th>Warehouse</th>
-                <th>Time of Arrival</th>
-                <th>Current Location</th>
-                <th>Incoterm</th>
-                <th>Container Number</th>
-                <th>SKU</th>
-                <th>Description</th>
-                <th>QtyGross</th>
-                <th>QtyNet</th>
-                <th>Available</th>
-                <th>Reserved</th>
-                <th>Potential Buyer</th>
-                <th>Actions</th>
-            </tr>
-        </ng-template>
-
-
-        <!-- Reservas por articulo -->
-        <ng-template pTemplate="rowexpansion" let-expanded="expanded" let-article>
-            <!-- Utiliza *ngIf para verificar si hay datos -->
-            <tr *ngIf="article.articuloReservas && article.articuloReservas.length > 0">
-            <tr>
-                <td colspan="12">
-                    <div class="p-3">
-                        <p-table [value]="article.articuloReservas" dataKey="id">
-                            <ng-template pTemplate="header">
-            <tr>
-                <th>Modelo</th>
-                <th>SKU</th>
-                <th>Reservado</th>
-                <th>Possible Buyer</th>
-                <th>Status</th>
-            </tr>
-        </ng-template>
-        <ng-template style="height: 15%;" pTemplate="body" let-articuloReservas>
-            <tr>
-                <td>{{ article.model }}</td>
-                <td>{{ articuloReservas.sku }}</td>
-                <td>{{ articuloReservas.reserved }}</td>
-                <td> {{ articuloReservas.possibleBuyer }}</td>
-                <td>
+    <!-- Reservas por articulo -->
+    <ng-template pTemplate="rowexpansion" let-expanded="expanded" let-article>
+      <!-- Utiliza *ngIf para verificar si hay datos -->
+      <tr
+        *ngIf="article.articuloReservas && article.articuloReservas.length > 0"
+      ></tr>
+      <tr>
+        <td colspan="12">
+          <div class="p-3">
+            <p-table [value]="article.articuloReservas" dataKey="id">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Modelo</th>
+                  <th>SKU</th>
+                  <th>Reservado</th>
+                  <th>Possible Buyer</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </ng-template>
+              <ng-template
+                style="height: 15%"
+                pTemplate="body"
+                let-articuloReservas
+                let-editing="editing"
+                let-ri="rowIndex"
+              >
+                <tr [pEditableRow]="articuloReservas">
+                  <td>{{ article.model }}</td>
+                  <td>{{ articuloReservas.sku }}</td>
+                  <td>{{ articuloReservas.reserved }}</td>
+                  <td>{{ articuloReservas.possibleBuyer }}</td>
+                  <td>
                     <div class="flex flex-wrap gap-3">
-                        <div class="flex align-items-center">
-                            <p-radioButton name="Reservado" value="Reservado" [(ngModel)]="articuloReservas.status"
-                                inputId="Reservado"></p-radioButton>
-                            <label for="Reservado" class="ml-2">Reservado</label>
-                        </div>
+                      <div class="flex align-items-center">
+                        <p-radioButton
+                          name="Reservado"
+                          value="Reservado"
+                          [(ngModel)]="articuloReservas.status"
+                          inputId="Reservado"
+                        ></p-radioButton>
+                        <label for="Reservado" class="ml-2">Reservado</label>
+                      </div>
 
-                        <div class="flex align-items-center">
-                            <p-radioButton name="Confirmado" value="Confirmado" [(ngModel)]="articuloReservas.status"
-                                inputId="Confirmado"></p-radioButton>
-                            <label for="Confirmado" class="ml-2">Confirmado</label>
-                        </div>
+                      <div class="flex align-items-center">
+                        <p-radioButton
+                          name="Confirmado"
+                          [disabled]="isConfirmado"
+                          value="Confirmado"
+                          [(ngModel)]="articuloReservas.status"
+                          inputId="Confirmado"
+                        ></p-radioButton>
+                        <br />
+                        <label for="Confirmado" class="ml-2">Confirmado</label>
+                      </div>
 
-
-                        <div class="flex align-items-center">
-                            <p-radioButton name="NoConfirmado" value="NoConfirmado"
-                                [(ngModel)]="articuloReservas.status" inputId="NoConfirmado"></p-radioButton>
-                            <label for="NoConfirmado" class="ml-2">NoConfirmado</label>
-                        </div>
+                      <div class="flex align-items-center">
+                        <p-radioButton
+                          name="NoConfirmado"
+                          value="NoConfirmado"
+                          [disabled]="NoConfirmado"
+                          [(ngModel)]="articuloReservas.status"
+                          inputId="NoConfirmado"
+                        ></p-radioButton>
+                        <label for="NoConfirmado" class="ml-2"
+                          >NoConfirmado</label
+                        >
+                      </div>
                     </div>
-                </td>
+                  </td>
+                  <td>
+                    <div
+                      class="flex align-items-center justify-content-center gap-2"
+                    >
+                      <button
+                        type="button"
+                        pButton
+                        pRipple
+                        (click)="UpdateArticleReserved(articuloReservas)"
+                        class="p-button-plain mr-2"
+                        label="Update status"
+                      ></button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
 
-            </tr>
-        </ng-template>
-    </p-table>
-</div>
-</td>
-</tr>
-</ng-template>
+    <ng-template
+      pTemplate="body"
+      let-articles
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="articles">
+        <td>
+          <button
+            type="button"
+            pButton
+            pRipple
+            [pRowToggler]="articles"
+            class="p-button-text p-button-rounded p-button-plain mr-2"
+            [icon]="
+              dt2.isRowExpanded(articles)
+                ? 'pi pi-chevron-down'
+                : 'pi pi-chevron-right'
+            "
+          ></button>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="articles.model" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.model }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.salesSample"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.salesSample }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.sourcingTrackingNumber"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.sourcingTrackingNumber }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="articles.warrant" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.warrant }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.originCountry"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.originCountry }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.destinationCountry"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.destinationCountry }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="articles.warehouse" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.warehouse }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-calendar
+                [(ngModel)]="articles.timeOfArrival"
+                [touchUI]="true"
+                [readonlyInput]="true"
+              ></p-calendar>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.timeOfArrival | date: "yyyy-MM-dd" }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.currentLocation"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.currentLocation }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="articles.incoterm" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.incoterm }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.containerNumber"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.containerNumber }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
 
-
-
-<ng-template pTemplate="body" let-articles let-editing="editing" let-ri="rowIndex">
-    <tr [pEditableRow]="articles">
         <td>
-            <button type="button" pButton pRipple [pRowToggler]="articles"
-                class="p-button-text p-button-rounded p-button-plain mr-2"
-                [icon]="dt2.isRowExpanded(articles) ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="articles.sku" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.sku }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.model">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.model}}
-                </ng-template>
-            </p-cellEditor>
-
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.description"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.description }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.salesSample">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.salesSample}}
-                </ng-template>
-            </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="decimal"
+                [(ngModel)]="articles.qtyGross"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.qtyGross }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.sourcingTrackingNumber">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.sourcingTrackingNumber}}
-                </ng-template>
-            </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="decimal" [(ngModel)]="articles.qtyNet" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.qtyNet }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.warrant">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.warrant}}
-                </ng-template>
-            </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="decimal"
+                [(ngModel)]="articles.available"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.available }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.originCountry">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.originCountry}}
-                </ng-template>
-            </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="decimal"
+                [(ngModel)]="articles.reserved"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.reserved }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.destinationCountry">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.destinationCountry}}
-                </ng-template>
-            </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="articles.potentialBuyer"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ articles.potentialBuyer }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.warehouse">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.warehouse}}
-                </ng-template>
-            </p-cellEditor>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(articles)"
+              class="p-button-rounded p-button-text"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(articles)"
+              class="p-button-rounded p-button-text p-button-success mr-2"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(articles, ri, $event)"
+              class="p-button-rounded p-button-text p-button-danger"
+            ></button>
+          </div>
         </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <p-calendar [(ngModel)]="articles.timeOfArrival" [touchUI]="true"
-                        [readonlyInput]="true"></p-calendar>
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.timeOfArrival | date: 'yyyy-MM-dd'}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.currentLocation">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.currentLocation}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.incoterm">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.incoterm}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.containerNumber">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.containerNumber}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-
-
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.sku">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.sku}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.description">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.description}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="decimal" [(ngModel)]="articles.qtyGross">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.qtyGross}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="decimal" [(ngModel)]="articles.qtyNet">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.qtyNet}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="decimal" [(ngModel)]="articles.available">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.available}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="decimal" [(ngModel)]="articles.reserved">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.reserved}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="articles.potentialBuyer">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{articles.potentialBuyer}}
-                </ng-template>
-            </p-cellEditor>
-        </td>
-        <td>
-            <div class="flex align-items-center justify-content-center gap-2">
-                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
-                    (click)="onRowEditInit(articles)" class="p-button-rounded p-button-text"></button>
-                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
-                    (click)="onRowEditSave(articles)"
-                    class="p-button-rounded p-button-text p-button-success mr-2"></button>
-                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
-                    (click)="onRowEditCancel(articles, ri, $event)"
-                    class="p-button-rounded p-button-text p-button-danger"></button>
-            </div>
-        </td>
-    </tr>
-</ng-template>
-</p-table>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

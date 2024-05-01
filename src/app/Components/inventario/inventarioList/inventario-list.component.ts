@@ -1,20 +1,13 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  ConfirmationService,
-  MessageService
-} from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationService';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
 import { InventarioAddItemComponent } from '../inventario-add-item/inventario-add-item.component';
+import { ArticuloReserva } from 'src/app/Shared/model/articuloReserva';
 
 @Component({
   selector: 'app-inventario-list',
@@ -24,15 +17,13 @@ import { InventarioAddItemComponent } from '../inventario-add-item/inventario-ad
 export class InventarioListComponent implements OnInit, OnDestroy {
   articles: any[];
   articlesDetalle: any[];
-
-  //statuses!: SelectItem[];
   clonedProducts: { [s: string]: Articulo } = {};
-  @ViewChild('exampleModal') exampleModal: InventarioAddItemComponent;
   sizes!: any[];
+  isReservado: boolean;
+  isConfirmado: boolean;
+  NoConfirmado: boolean;
 
   visible: boolean = false;
-  statuses: any[];
-
   ref: DynamicDialogRef | undefined;
   private dialogClosedSubscription: Subscription;
 
@@ -53,12 +44,6 @@ export class InventarioListComponent implements OnInit, OnDestroy {
       this.dialogServiceClose.dialogClosed$.subscribe(() => {
         this.refreshGridData();
       });
-
-    this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' },
-    ];
   }
 
   ngOnDestroy() {
@@ -76,16 +61,8 @@ export class InventarioListComponent implements OnInit, OnDestroy {
     });
   }
 
-  getSeverity(status: string) {
-    switch (status) {
-      case 'Reservado':
-        return 'info';
-      case 'Confirmado':
-        return 'success';
-      case 'NoConfirmado':
-        return 'danger';
-    }
-    return;
+  isReservadoDisabled(registro: ArticuloReserva): boolean {
+    return registro.status === 'Confirmado';
   }
 
   getArticles(): void {
@@ -122,6 +99,52 @@ export class InventarioListComponent implements OnInit, OnDestroy {
         });
       },
     });
+  }
+
+  UpdateArticleReserved(articulo: ArticuloReserva) {
+    this.articleService
+      .actualizarArticuloReserva(articulo)
+      .subscribe((response) => {
+        console.log(response);
+        this.messageService.add({
+          severity: 'success',
+          summary: '',
+          detail: 'Status actualizado.',
+        });
+      });
+  }
+
+  validarStatus(articuloReserva: ArticuloReserva): boolean {
+    let bandera = false;
+
+    this.articles.forEach((articulo) => {
+      console.log(articulo);
+      // if (
+      //   articulo.articuloReservas.status == 'Confirmado' &&
+      //   articuloReserva.status == 'Reservado'
+      // ) {
+      //   this.messageService.add({
+      //     severity: 'danger',
+      //     summary: '',
+      //     detail: 'No puede pasar de Confirmado a Reservado.',
+      //   });
+      //   return bandera;
+      // }
+      // if (
+      //   articulo.articuloReservas.status == 'NoConfirmado' &&
+      //   articuloReserva.status == 'Confirmado'
+      // ) {
+      //   this.messageService.add({
+      //     severity: 'danger',
+      //     summary: '',
+      //     detail: 'No puede pasar de NoConfirmado a Confirmado.',
+      //   });
+      //   return bandera;
+      // }
+
+      // return true;
+    });
+    return bandera;
   }
 
   onRowEditInit(product: Articulo) {
