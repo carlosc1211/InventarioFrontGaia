@@ -1,21 +1,21 @@
 <form [formGroup]="usuarioForm">
     <div class="card flex flex-column md:flex-row gap-5">
         <div class="p-inputgroup">
-            <input pInputText placeholder="Nombre" />
+            <input pInputText placeholder="Nombre"  formControlName="nombre"  />
         </div>
 
         <div class="p-inputgroup">
-            <input type="text" pInputText placeholder="Apellidos" />
+            <input type="text" pInputText placeholder="Apellidos"  formControlName="apellidos"  />
         </div>
 
         <div class="p-inputgroup">
-            <input type="text" pInputText placeholder="Usuario" />
+            <input type="text" pInputText placeholder="Usuario"  formControlName="usuario" />
         </div>
         <div class="p-inputgroup">
-            <input type="text" pInputText placeholder="Constraseña" />
+            <input type="text" pInputText placeholder="Constraseña" formControlName="constrasenya" />
         </div>
         <div class="p-inputgroup">
-            <input type="text" pInputText placeholder="Rol" />
+            <input type="text" pInputText placeholder="Rol"  formControlName="rol" />
         </div>
     </div>
 </form>

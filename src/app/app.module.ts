@@ -24,6 +24,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { TagModule } from 'primeng/tag';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -82,7 +83,8 @@ import { AddUsersComponent } from './Components/users/add-users/add-users/add-us
     TreeTableModule,
     MultiSelectModule,
     CheckboxModule,
-    RadioButtonModule
+    RadioButtonModule,
+    TagModule
   ],
   providers: [
     MessageService,

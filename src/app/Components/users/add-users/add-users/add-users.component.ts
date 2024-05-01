@@ -23,7 +23,7 @@ export class AddUsersComponent {
     
     this.usuarioForm = this.formBuilder.group({
       nombre: ['', Validators.required],
-      apellido: [''],
+      apellidos: [''],
       usuario: ['', [Validators.required]],
       constrasenya: ['', Validators.required],
       rol: ['', Validators.required],
@@ -46,6 +46,7 @@ export class AddUsersComponent {
   }
 
   saveItem(): void {
+    console.log(this.usuarioForm.value)
     this.usuarioService.saveUsuario(this.usuarioForm).subscribe((response) => {
       console.log(response)
       this.closeDialog();

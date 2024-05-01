@@ -60,14 +60,38 @@
                 <th>SKU</th>
                 <th>Reservado</th>
                 <th>Possible Buyer</th>
+                <th>Status</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-articuloReservas>
+        <ng-template style="height: 15%;" pTemplate="body" let-articuloReservas>
             <tr>
                 <td>{{ article.model }}</td>
                 <td>{{ articuloReservas.sku }}</td>
                 <td>{{ articuloReservas.reserved }}</td>
-                <td>{{ articuloReservas.possibleBuyer }}</td>
+                <td> {{ articuloReservas.possibleBuyer }}</td>
+                <td>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex align-items-center">
+                            <p-radioButton name="Reservado" value="Reservado" [(ngModel)]="articuloReservas.status"
+                                inputId="Reservado"></p-radioButton>
+                            <label for="Reservado" class="ml-2">Reservado</label>
+                        </div>
+
+                        <div class="flex align-items-center">
+                            <p-radioButton name="Confirmado" value="Confirmado" [(ngModel)]="articuloReservas.status"
+                                inputId="Confirmado"></p-radioButton>
+                            <label for="Confirmado" class="ml-2">Confirmado</label>
+                        </div>
+
+
+                        <div class="flex align-items-center">
+                            <p-radioButton name="NoConfirmado" value="NoConfirmado"
+                                [(ngModel)]="articuloReservas.status" inputId="NoConfirmado"></p-radioButton>
+                            <label for="NoConfirmado" class="ml-2">NoConfirmado</label>
+                        </div>
+                    </div>
+                </td>
+
             </tr>
         </ng-template>
     </p-table>

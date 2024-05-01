@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { Subscription, timeout } from 'rxjs';
+import { EMPTY, Subscription, timeout } from 'rxjs';
 import { InventarioService } from 'src/app/Service/inventario.service';
 import { InventarioAddItemComponent } from '../inventarioItem/inventario-add-item/inventario-add-item.component';
 import { Articulo } from 'src/app/Shared/model/articuloModel';
@@ -19,11 +19,12 @@ export class InventarioListComponent implements OnInit, OnDestroy {
   articles: any[];
   articlesDetalle: any[];
   
-  statuses!: SelectItem[];
+  //statuses!: SelectItem[];
   clonedProducts: { [s: string]: Articulo } = {};
   @ViewChild('exampleModal') exampleModal: InventarioAddItemComponent;
   sizes!: any[];
   visible: boolean = false;
+  statuses:any[]
 
   ref: DynamicDialogRef | undefined;
   private dialogClosedSubscription: Subscription;
@@ -44,6 +45,12 @@ export class InventarioListComponent implements OnInit, OnDestroy {
     this.dialogClosedSubscription = this.dialogServiceClose.dialogClosed$.subscribe(() => {
       this.refreshGridData();
     });
+
+    this.statuses = [
+            { label: 'INSTOCK', value: 'instock' },
+            { label: 'LOWSTOCK', value: 'lowstock' },
+            { label: 'OUTOFSTOCK', value: 'outofstock' }
+        ];
   }
 
   ngOnDestroy() {
@@ -59,6 +66,18 @@ export class InventarioListComponent implements OnInit, OnDestroy {
       header: 'Add new item',
       width: '65%'
     });
+  }
+
+  getSeverity(status: string) {
+    switch (status) {
+      case 'Reservado':
+        return 'info'
+      case 'Confirmado':
+        return 'success'
+      case 'NoConfirmado':
+        return 'danger'
+    }
+    return
   }
 
   getArticles(): void {
