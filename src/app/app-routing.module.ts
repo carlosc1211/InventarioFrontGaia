@@ -6,6 +6,7 @@ import { InventarioComponent } from './Components/inventario/inventario.componen
 import { SellingComponent } from './Components/selling/selling.component';
 import { UsersComponent } from './Components/users/users.component';
 import { ReservedComponent } from './Components/reserved/reserved.component';
+import { ClientComponent } from './Components/client/client.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'inventario', component: InventarioComponent },
   { path: 'selling', component: SellingComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'reserved', component: ReservedComponent }
+  { path: 'reserved', component: ReservedComponent },
+  { path: 'client', component: ClientComponent },
 ];
 
 @NgModule({

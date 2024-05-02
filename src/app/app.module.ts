@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
-import {StyleClassModule} from 'primeng/styleclass';
+import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +24,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TagModule } from 'primeng/tag';
+import { PanelModule } from 'primeng/panel';
+import { DividerModule } from 'primeng/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { UsersComponent } from './Components/users/users.component';
 import { ReservedComponent } from './Components/reserved/reserved.component';
 import { AddUsersComponent } from './Components/users/add-users/add-users/add-users.component';
 import { InventarioAddItemComponent } from './Components/inventario/inventario-add-item/inventario-add-item.component';
+import { ClientComponent } from './Components/client/client.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { InventarioAddItemComponent } from './Components/inventario/inventario-a
     SellingComponent,
     UsersComponent,
     ReservedComponent,
-    AddUsersComponent
+    AddUsersComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,9 @@ import { InventarioAddItemComponent } from './Components/inventario/inventario-a
     MultiSelectModule,
     CheckboxModule,
     RadioButtonModule,
-    TagModule
+    TagModule,
+    PanelModule,
+    DividerModule,
   ],
   providers: [
     MessageService,
@@ -93,8 +98,9 @@ import { InventarioAddItemComponent } from './Components/inventario/inventario-a
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,
-      multi: true
-    }],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

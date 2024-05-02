@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<br />
+<div class="surface-card p-4 shadow-8 border-round">
+  <div class="flex flex-column md:flex-row">
+    <div
+      class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5"
+    >
+      <div class="p-inputgroup">
+        <input pInputText placeholder="Nombre o Razón social" />
+      </div>
+      <div class="p-inputgroup">
+        <input type="text" pInputText placeholder="DNI / NIF" />
+      </div>
+      <div class="p-inputgroup">
+        <input type="text" pInputText placeholder="Dirección" />
+      </div>
+      <div class="footer flex justify-content-end">
+        <p-button class="m-2" label="Save" [outlined]="true"></p-button>
+      </div>
+    </div>
+    <div class="w-full md:w-2">
+      <p-divider layout="vertical" styleClass="hidden md:flex"
+        ><b></b
+      ></p-divider>
+      <p-divider
+        layout="horizontal"
+        styleClass="flex md:hidden"
+        [align]="'center'"
+        ><b></b
+      ></p-divider>
+    </div>
+    <p-table  [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.quantity }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+  </div>
+</div>

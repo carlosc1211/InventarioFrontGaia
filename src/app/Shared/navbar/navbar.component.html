@@ -1,16 +1,27 @@
-<div class="card flex flex-column md:flex-row gap-3">
-<div class="flex-none flex align-items-center justify-content-center  font-bold m-2 px-5 py-3 border-round">
-  <div class="container-fluid">
-    <img src="../../../assets/img/logo.png" alt="Logo" style="max-height: 100px" />
-
+<div class="flex">
+  <div
+    class="flex-grow-1 flex align-items-center justify-content-left p-4 m-3 border-round"
+  >
+    <div class="container-fluid">
+      <img
+        src="../../../assets/img/logo.png"
+        alt="Logo"
+        style="max-height: 100px"
+      />
+    </div>
   </div>
-</div>
-<div class="flex-grow-1 flex align-items-center justify-content-center  font-bold m-2 px-5 py-3 border-round">
-  <h2>Gaia Cacao</h2>
-</div>
-<div class="flex-none flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
-  <form class="d-flex" role="search">
-    <button pButton class="btn btn-outline-secondary" (click)="logout()">Logout</button>
-  </form>
-</div>
+  <div
+    class="flex-shrink-1 md:flex-shrink-0 flex align-items-center justify-content-center p-4 m-3 border-round"
+  >
+    <h2>Gaia Cacao</h2>
+  </div>
+  <div
+    class="flex-grow-1 flex align-items-center justify-content-end font-bold p-4 m-3 border-round"
+  >
+    <form class="d-flex" role="search">
+      <button pButton class="btn btn-outline-secondary" (click)="logout()">
+        Logout
+      </button>
+    </form>
+  </div>
 </div>
