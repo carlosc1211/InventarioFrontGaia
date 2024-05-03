@@ -5,21 +5,24 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Articulo } from '../Shared/model/articuloModel';
 import { ArticuloReserva } from '../Shared/model/articuloReserva';
+import { ClientModel } from '../Shared/model/clientModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InventarioService {
-  private getaAllArticleUrl = 'https://localhost:44357/api/Articulo/GetAllItem';
-  private putArticleUrl = 'https://localhost:44357/api/Articulo/PutArticle/';
+  private getaAllArticleUrl = 'https://localhost:44357/api/articulo/GetAllItem';
+  private putArticleUrl = 'https://localhost:44357/api/articulo/PutArticle/';
   private getDetailArticleUrl =
     'https://localhost:44357/api/Articulo/GetDetailItem';
-  private deteleArticleUrl = 'https://localhost:44357/api/Articulo/deleteItem';
-  private saveArticleUrl = 'https://localhost:44357/api/Articulo/';
+  private deteleArticleUrl = 'https://localhost:44357/api/articulo/deleteItem';
+  private saveArticleUrl = 'https://localhost:44357/api/articulo/';
   private saveArticleReservedUrl =
-    'https://localhost:44357/api/Articulo/ArticuloReserva/';
+    'https://localhost:44357/api/articulo/ArticuloReserva/';
   private putArticleReservedUrl =
-    'https://localhost:44357/api/Articulo/PutArticleReserved/';
+    'https://localhost:44357/api/articulo/PutArticleReserved/';
+  private saveClientUrl = 'https://localhost:44357/api/client';
+  private getListClientUrl = 'https://localhost:44357/api/client/GetAllClient';
 
   constructor(
     private http: HttpClient,
@@ -74,6 +77,23 @@ export class InventarioService {
       .pipe(
         catchError(this.handleError), // Manejo de errores opcional
       );
+  }
+
+  saveClient(client: ClientModel): Observable<any> {
+    return this.http.post<any>(this.saveClientUrl, client).pipe(
+      catchError(this.handleError), // Manejo de errores opcional
+    );
+  }
+
+  getListClient(): Observable<any[]> {
+    return this.http.get<any[]>(this.getListClientUrl).pipe(
+      catchError((error) => {
+        console.error('Error al obtener el detalle de los artículos:', error);
+        return throwError(
+          'Algo salió mal al obtener los clientes. Por favor, inténtelo de nuevo más tarde.',
+        );
+      }),
+    );
   }
 
   private handleError(error: any): Observable<any> {

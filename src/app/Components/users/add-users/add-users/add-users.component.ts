@@ -9,18 +9,18 @@ import { DialogCommunicationService } from 'src/app/Service/dialogCommunicationS
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
-  styleUrls: ['./add-users.component.css']
+  styleUrls: ['./add-users.component.css'],
 })
 export class AddUsersComponent {
   usuarioForm: FormGroup;
 
   constructor(
-      private formBuilder: FormBuilder,
-      private dialogRef: DynamicDialogRef,
-      private dialogService: DialogCommunicationService,
-      private usuarioService: AuthService,
-      private messageService: MessageService) {
-    
+    private formBuilder: FormBuilder,
+    private dialogRef: DynamicDialogRef,
+    private dialogService: DialogCommunicationService,
+    private usuarioService: AuthService,
+    private messageService: MessageService,
+  ) {
     this.usuarioForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellidos: [''],
@@ -28,7 +28,6 @@ export class AddUsersComponent {
       constrasenya: ['', Validators.required],
       rol: ['', Validators.required],
     });
-    
   }
 
   onSubmit() {
@@ -40,19 +39,26 @@ export class AddUsersComponent {
     }
   }
 
-   closeDialog() {
+  closeDialog() {
     this.dialogRef.close();
     this.dialogService.notifyDialogClosed();
   }
 
   saveItem(): void {
-    console.log(this.usuarioForm.value)
-    this.usuarioService.saveUsuario(this.usuarioForm).subscribe((response) => {
-      console.log(response)
-      this.closeDialog();
-    }, (error) => {
-      console.error('Error al guardar el usuario:', error);
-      this.messageService.add({ severity: 'error', summary: '', detail: 'Error al guardar el usuario' });
-        })
-    }
+    console.log(this.usuarioForm.value);
+    this.usuarioService.saveUsuario(this.usuarioForm).subscribe(
+      (response) => {
+        console.log(response);
+        this.closeDialog();
+      },
+      (error) => {
+        console.error('Error al guardar el usuario:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: '',
+          detail: 'Error al guardar el usuario',
+        });
+      },
+    );
+  }
 }

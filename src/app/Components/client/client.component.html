@@ -6,18 +6,38 @@
       class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5"
     >
       <div class="p-inputgroup">
-        <input pInputText placeholder="Nombre o Razón social" />
+        <input
+          pInputText
+          placeholder="Nombre o Razón social"
+          [(ngModel)]="client.Nombre"
+        />
       </div>
       <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="DNI / NIF" />
+        <input
+          type="text"
+          pInputText
+          placeholder="DNI / NIF"
+          [(ngModel)]="client.Identificacion"
+        />
       </div>
       <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Dirección" />
+        <input
+          type="text"
+          pInputText
+          placeholder="Dirección"
+          [(ngModel)]="client.Direccion"
+        />
       </div>
       <div class="footer flex justify-content-end">
-        <p-button class="m-2" label="Save" [outlined]="true"></p-button>
+        <p-button
+          class="m-2"
+          label="Save"
+          [outlined]="true"
+          (onClick)="Save()"
+        ></p-button>
       </div>
     </div>
+
     <div class="w-full md:w-2">
       <p-divider layout="vertical" styleClass="hidden md:flex"
         ><b></b
@@ -29,23 +49,37 @@
         ><b></b
       ></p-divider>
     </div>
-    <p-table  [tableStyle]="{ 'min-width': '50rem' }">
-    <ng-template pTemplate="header">
+    <p-table [value]="listClient" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="caption">
+        <br />
+        <div class="flex align-items-center justify-content-between">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-arrow-left"
+            label="Back"
+            class="mr-2"
+            pTooltip="Back to Inventory"
+            (click)="backToInventory()"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
         <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
+          <th>Nombre o razón social</th>
+          <th>DNI / NIF</th>
+          <th>Dirección</th>
         </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
+      </ng-template>
+      <ng-template pTemplate="body" let-listClient>
         <tr>
-            <td>{{ product.code }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category }}</td>
-            <td>{{ product.quantity }}</td>
+          <td>{{ listClient.nombre }}</td>
+          <td>{{ listClient.identificacion }}</td>
+          <td>{{ listClient.direccion }}</td>
         </tr>
-    </ng-template>
-</p-table>
+      </ng-template>
+    </p-table>
   </div>
 </div>
