@@ -15,7 +15,10 @@ export class AuthService {
   private putUsuarioUrl = 'https://localhost:44357/api/Usuario/PutUsuarios';
   private postUsuarioUrl = 'https://localhost:44357/api/Usuario/';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   login(user: any): Observable<any> {
     const headers = new HttpHeaders({
@@ -29,14 +32,15 @@ export class AuthService {
   }
 
   saveUsuario(usuario: any): Observable<any> {
-  return this.http.post<any>(this.postUsuarioUrl, usuario)
-      .pipe(
-        catchError(this.handleError<any>('login', [])) 
-      );
-}
+    return this.http
+      .post<any>(this.postUsuarioUrl, usuario)
+      .pipe(catchError(this.handleError<any>('login', [])));
+  }
 
   actualizarUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(this.putUsuarioUrl, usuario).pipe(catchError(this.handleError<any>('/login', [])))
+    return this.http
+      .put<Usuario>(this.putUsuarioUrl, usuario)
+      .pipe(catchError(this.handleError<any>('/login', [])));
   }
 
   logout(): void {
@@ -54,7 +58,7 @@ export class AuthService {
     );
   }
 
-   obtenerRoles(): Observable<any> {
+  obtenerRoles(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
